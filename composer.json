@@ -1,5 +1,5 @@
 {
-  "name": "mlaa/cbox-mla",
+  "name": "mlaa/levitin",
   "type": "wordpress-theme",
   "require": {
     "php": ">=5.3.0",
