@@ -1,6 +1,6 @@
 <?php
 
-namespace MLA\Tuileries\Wrapper;
+namespace MLA\Levitin\Wrapper;
 
 /**
  * Theme wrapper

@@ -39,7 +39,7 @@ add_action( 'widgets_init', 'mla_dashboard_logged_out', 11 );
  */
 class MLA_BP_Profile_Area extends WP_Widget {
 	function __construct() {
-		parent::WP_Widget( false, $name = __( 'MLA Profile Area', 'tuileries' ) );
+		parent::WP_Widget( false, $name = __( 'MLA Profile Area', 'levitin' ) );
 	}
 
 	function widget($args, $instance) {

@@ -4,7 +4,7 @@
 ini_set('error_reporting', E_ALL & ~E_WARNING & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT);
 
 /**
- * Tuileries includes
+ * Levitin includes
  *
  * The $cpwpst_includes array determines the code library included in your theme.
  * Add or remove files to the array as needed. Supports child theme overrides.

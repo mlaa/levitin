@@ -1,6 +1,6 @@
 <?php
 
-namespace MLA\Tuileries\Assets;
+namespace MLA\Levitin\Assets;
 
 /**
  * Scripts and stylesheets

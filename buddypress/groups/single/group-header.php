@@ -1,6 +1,6 @@
 <?php
 
-use MLA\Tuileries\Custom;
+use MLA\Levitin\Custom;
 
 do_action( 'bp_before_group_header' );
 

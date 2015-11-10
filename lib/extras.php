@@ -1,8 +1,8 @@
 <?php
 
-namespace MLA\Tuileries\Extras;
+namespace MLA\Levitin\Extras;
 
-use MLA\Tuileries\Config;
+use MLA\Levitin\Config;
 
 /**
  * Add <body> classes

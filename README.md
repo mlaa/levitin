@@ -1,4 +1,4 @@
-# Tuileries
+# Levitin
 
 This is a WordPress theme based on the [Sage](https://github.com/roots/sage/) and [_s](https://github.com/Automattic/_s) starter themes, with a little bit of extra Craftpeak magic thrown in.
 
@@ -8,8 +8,8 @@ The goal for this project is a theme compatible with [Commons In A Box](http://c
 
 1. Spin up a new AWS instance on Vagrant, with `vagrant up $hostname --provider=aws`, where `$hostname` is your name for the new instance. 
 2. Ssh into the new box with `vagrant ssh $hostname`, and run the box installation script: `/srv/www/commons/bin/install-commons.sh`
-3. Make a copy of the `cbox-mla` theme, and call it `tuileries`: `cd /srv/www/commons/current/web/app/themes && cp -r cbox-mla tuileries`
-4. Check out the `develop` branch: `cd tuileries && git fetch && git checkout -b develop origin/develop`. 
+3. Make a copy of the `cbox-mla` theme, and call it `levitin`: `cd /srv/www/commons/current/web/app/themes && cp -r cbox-mla levitin`
+4. Check out the `develop` branch: `cd levitin && git fetch && git checkout -b develop origin/develop`.
 5. Run the rollout script, after reading it first: `cd scripts && ./rollout.sh`. 
 6. Get npm: `sudo apt-get install npm`
 7. Upgrade node, since Ubuntu's version is too old for this stack: `sudo apt-get install curl && curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash - && sudo apt-get install nodejs`

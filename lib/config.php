@@ -1,8 +1,8 @@
 <?php
 
-namespace MLA\Tuileries\Config;
+namespace MLA\Levitin\Config;
 
-use MLA\Tuileries\ConditionalTagCheck;
+use MLA\Levitin\ConditionalTagCheck;
 
 /**
  * Configuration values

@@ -1,6 +1,6 @@
 <?php
 
-namespace MLA\Tuileries\Utils;
+namespace MLA\Levitin\Utils;
 
 /**
  * Tell WordPress to use searchform.php from the templates/ directory

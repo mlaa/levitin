@@ -1,8 +1,8 @@
 <?php
 
-namespace MLA\Tuileries\Init;
+namespace MLA\Levitin\Init;
 
-use MLA\Tuileries\Assets;
+use MLA\Levitin\Assets;
 
 /**
  * Theme setup

@@ -1,8 +1,8 @@
 <?php
 
-namespace MLA\Tuileries\Customizer;
+namespace MLA\Levitin\Customizer;
 
-use MLA\Tuileries\Assets;
+use MLA\Levitin\Assets;
 
 /**
  * Add postMessage support for site title and description for the Theme Customizer.

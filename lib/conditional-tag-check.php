@@ -1,6 +1,6 @@
 <?php
 
-namespace MLA\Tuileries;
+namespace MLA\Levitin;
 
 /**
  * Utility class which takes an array of conditional tags (or any function which returns a boolean)

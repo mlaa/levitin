@@ -1,4 +1,4 @@
-<?php use MLA\Tuileries\Titles; ?>
+<?php use MLA\Levitin\Titles; ?>
 
 <?php if ( Titles\title() ): ?>
 	<div class="page-header">

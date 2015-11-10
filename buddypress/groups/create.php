@@ -1,6 +1,6 @@
 <?php do_action( 'bp_before_create_group_page' ); ?>
 
-<?php use MLA\Tuileries\Titles; ?>
+<?php use MLA\Levitin\Titles; ?>
 
 <div id="buddypress">
 

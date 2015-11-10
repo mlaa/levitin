@@ -7,7 +7,7 @@
  * @subpackage Theme
  */
 
-use MLA\Tuileries\Custom;
+use MLA\Levitin\Custom;
 
 ?>
 

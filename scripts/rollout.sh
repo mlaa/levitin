@@ -10,7 +10,7 @@ project_dir=/srv/www/commons/current
 wp_dir="$project_dir"/web/wp
 plugins_dir="$project_dir"/web/app/plugins
 themes_dir="$project_dir"/web/app/themes
-this_theme_dir="$themes_dir"/tuileries
+this_theme_dir="$themes_dir"/levitin
 
 # Check to make sure either the P env variable is set, or there's a plugins
 # directory at /srv/www/commons/current/web/app/plugins.
@@ -46,9 +46,9 @@ wp widget delete text-13
 # Activate this theme.
 SERVER=$1
 URL="--url=$SERVER"
-#wp theme activate tuileries $URL
+#wp theme activate levitin $URL
 #wp theme delete cbox-theme # this shouldn't be necessary once cbox-mla is fixed to activate correctly by itself
-wp theme activate tuileries $URL
+wp theme activate levitin $URL
 
 # Add profile area to dashboard sidebar
 wp widget add mla_bp_profile_area sidebar-primary

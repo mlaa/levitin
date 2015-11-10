@@ -1,7 +1,7 @@
 <?php
 
-use MLA\Tuileries\Config;
-use MLA\Tuileries\Wrapper;
+use MLA\Levitin\Config;
+use MLA\Levitin\Wrapper;
 
 ?>
 

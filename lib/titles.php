@@ -1,6 +1,6 @@
 <?php
 
-namespace MLA\Tuileries\Titles;
+namespace MLA\Levitin\Titles;
 
 /**
  * Page titles

@@ -1,11 +1,11 @@
 <?php
 
-namespace MLA\Tuileries\Custom;
+namespace MLA\Levitin\Custom;
 
 /**
  * Custom functions for the theme should go here. Use namespacing like:
  *
- * use MLA\Tuileries\Custom; (at the top of the file)
+ * use MLA\Levitin\Custom; (at the top of the file)
  *
  * Custom\function_name(); (in your PHP code)
  */

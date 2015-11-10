@@ -14,13 +14,13 @@
 
 			<?php $dashboard_slug = site_url() . '/dashboard/'; ?>
 
-			<li><a id="new_groupblog_post" href="<?php echo $dashboard_slug . '?type=new_groupblog_post'; ?>" title="<?php esc_attr_e( 'Posts from network sites', 'tuileries' ); ?>"><?php echo 'Posts'; ?></a></li>
+			<li><a id="new_groupblog_post" href="<?php echo $dashboard_slug . '?type=new_groupblog_post'; ?>" title="<?php esc_attr_e( 'Posts from network sites', 'levitin' ); ?>"><?php echo 'Posts'; ?></a></li>
 
-			<li><a id="bbp_topic_create" href="<?php echo $dashboard_slug . '?type=bbp_topic_create'; ?>" title="<?php esc_attr_e( 'New discussion topics', 'tuileries' ); ?>"><?php echo 'Discussions'; ?></a></li>
+			<li><a id="bbp_topic_create" href="<?php echo $dashboard_slug . '?type=bbp_topic_create'; ?>" title="<?php esc_attr_e( 'New discussion topics', 'levitin' ); ?>"><?php echo 'Discussions'; ?></a></li>
 
-			<li><a id="new_member" href="<?php echo $dashboard_slug . '?type=new_member'; ?>" title="<?php esc_attr_e( 'New members', 'tuileries' ); ?>"><?php echo 'Members'; ?></a></li>
+			<li><a id="new_member" href="<?php echo $dashboard_slug . '?type=new_member'; ?>" title="<?php esc_attr_e( 'New members', 'levitin' ); ?>"><?php echo 'Members'; ?></a></li>
 
-			<li><a id="new_deposit" href="<?php echo $dashboard_slug . '?type=new_deposit'; ?>" title="<?php esc_attr_e( 'New deposits', 'tuileries' ); ?>" value="new_deposit"><?php echo 'Deposits'; ?></a></li>
+			<li><a id="new_deposit" href="<?php echo $dashboard_slug . '?type=new_deposit'; ?>" title="<?php esc_attr_e( 'New deposits', 'levitin' ); ?>" value="new_deposit"><?php echo 'Deposits'; ?></a></li>
 
 			<?php do_action( 'bp_activity_type_tabs' ); ?>
 		</ul>
