@@ -74,5 +74,10 @@ function assets() {
 
 	wp_enqueue_script( 'modernizr', asset_path( 'scripts/modernizr.js' ), [], null, true );
 	wp_enqueue_script( 'cpwpst_js', asset_path( 'scripts/main.js' ), ['jquery'], null, true );
+
+	// these styles are too broad and break some things
+	// (need more specificity to limit scope to cacap elements)
+	wp_dequeue_style( 'cac-bp-css' );
+	wp_dequeue_style( 'cacap-css' );
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100 );
