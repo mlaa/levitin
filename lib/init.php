@@ -45,6 +45,8 @@ function theme_setup() {
 	 * Tell the TinyMCE editor to use a custom stylesheet
 	 */
 	add_editor_style( Assets\asset_path( 'styles/editor-style.css' ) );
+
+	remove_action( 'bp_directory_members_actions', 'bp_member_add_friend_button' );
 }
 add_action( 'after_setup_theme', __NAMESPACE__ . '\\theme_setup' );
 
