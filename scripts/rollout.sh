@@ -115,6 +115,9 @@ wp plugin activate buddypress-profile-progression
 #cd $plugins_dir/cbox-auth
 #git checkout -b develop origin/develop || git checkout develop #get the develop version of cbox-auth
 
+wp plugin activate --network bp-block-member
+wp plugin activate --network buddypress-followers
+
 # --------- Styles ------------
 
 # including files instead of submodule
