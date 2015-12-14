@@ -75,6 +75,5 @@ add_action( 'widgets_init', __NAMESPACE__ . '\\widgets_init' );
 remove_action( 'bp_directory_members_actions', 'bp_member_add_friend_button' );
 
 // ensure the add friend button is not actually added (since we use follow instead)
-// passing '' for the function doesn't bother wp and gets the job done without defining an unnecessary function
 // if the add friend button used an action, we could just remove that, but it's hardcoded multiple places
-add_filter( 'bp_get_add_friend_button', '' );
+add_filter( 'bp_get_add_friend_button', '__return_false' );
