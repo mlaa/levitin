@@ -34,14 +34,17 @@ cd $wp_dir
 # we change the theme.
 # Dashboard Widgets: 1. rss-5: "News from the MLA"; 2. text-15: "MLA Sites"; 3. links-2: "Member Resources"
 # 4. rss-6: "New from the MLA" (copy); 5. links-3: "Member Resources" (copy)
-# Footer Widgets: 1. text-6: "Contact Us"; 2. rss-3: "FAQ"; 3. text-10: "Get Help"
-for widget in rss-5 text-15 links-2 text-6 rss-3 text-10 rss-6 links-3
+# Footer Widgets: 1. text-6: "Contact Us"; 3. text-10: "Get Help"
+for widget in rss-5 text-15 links-2 text-6 text-10 rss-6 links-3
 do
 	wp widget move $widget --sidebar-id=wp_inactive_widgets
 done
 
 # Delete "More Resources" widget
 wp widget delete text-13
+
+# Delete "FAQ" widget (add link to "Get Help" widget instead)
+wp widget delete rss-3
 
 # Activate this theme.
 SERVER=$1
