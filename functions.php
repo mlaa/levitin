@@ -50,3 +50,15 @@ unset($file, $filepath);
 
 // Remove redundant subscription button from group header.
 remove_action( 'bp_group_header_meta', 'ass_group_subscribe_button' );
+
+// remove profile progression indicator until it has a place
+remove_action( 'bp_before_member_header_meta', array( BP_Profile_Progression::instance(), 'member_display' ) );
+
+/**
+ * limit max & scope (to displayed user id)
+ * @return string Query string for the activity/members/groups/blogs/forums loops
+ */
+function bp_levitin_ajax_querystring( $query_string, $object ) {
+	return $query_string .= '&max=10&user_id=' . bp_displayed_user_id();
+}
+add_filter( 'bp_ajax_querystring', 'bp_levitin_ajax_querystring' );

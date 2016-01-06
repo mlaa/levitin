@@ -15,84 +15,78 @@
 
 	</div><!-- #item-header -->
 
+	<div id="item-nav">
+		<div class="item-list-tabs no-ajax" id="object-nav" role="navigation">
+			<ul>
+
+				<?php /*
+				<?php bp_get_displayed_user_nav(); ?>
+				*/ ?>
+
+				<?php
+
+				/**
+				 * Fires after the display of member options navigation.
+				 *
+				 * @since BuddyPress (1.2.4)
+				 */
+				do_action( 'bp_member_options_nav' ); ?>
+
+			</ul>
+		</div>
+	</div><!-- #item-nav -->
+
 	<div id="item-body">
+
 		<?php
+
 		/**
 		 * Fires before the display of member body content.
 		 *
 		 * @since BuddyPress (1.2.0)
 		 */
-		do_action( 'bp_before_member_body' ); ?>
+		do_action( 'bp_before_member_body' );
 
-		<div class="item-list-tabs no-ajax" id="subnav" role="navigation">
-			<ul>
-				<?php bp_get_options_nav(); ?>
-			</ul>
-		</div><!-- .item-list-tabs -->
+		if ( bp_is_user_activity() || !bp_current_component() ) :
+			bp_get_template_part( 'members/single/activity' );
 
-		<div class="flexbox-container">
-			<div>
-<?php /* ?>
-<?php var_dump(bp_has_activities( 'display_comments=threaded&show_hidden=true&include=' . bp_current_action())); ?>
-<?php */ ?>
-				<?php if ( bp_has_activities( 'display_comments=threaded&show_hidden=true&include=' . bp_current_action() ) ) : ?>
+		elseif ( bp_is_user_blogs() ) :
+			bp_get_template_part( 'members/single/blogs'    );
 
-					<ul id="activity-stream" class="activity-list item-list">
-					<?php while ( bp_activities() ) : bp_the_activity(); ?>
+		elseif ( bp_is_user_friends() ) :
+			bp_get_template_part( 'members/single/friends'  );
 
-						<?php bp_get_template_part( 'activity/entry' ); ?>
+		elseif ( bp_is_user_groups() ) :
+			bp_get_template_part( 'members/single/groups'   );
 
-					<?php endwhile; ?>
-					</ul>
+		elseif ( bp_is_user_messages() ) :
+			bp_get_template_part( 'members/single/messages' );
 
-				<?php endif; ?>
-			</div>
-			<div>
-				<?php
+		elseif ( bp_is_user_profile() ) :
+			bp_get_template_part( 'members/single/profile'  );
 
-				if ( bp_is_user_activity() || !bp_current_component() ) :
-					bp_get_template_part( 'members/single/activity' );
+		elseif ( bp_is_user_forums() ) :
+			bp_get_template_part( 'members/single/forums'   );
 
-				elseif ( bp_is_user_blogs() ) :
-					bp_get_template_part( 'members/single/blogs'    );
+		elseif ( bp_is_user_notifications() ) :
+			bp_get_template_part( 'members/single/notifications' );
 
-				elseif ( bp_is_user_friends() ) :
-					bp_get_template_part( 'members/single/friends'  );
+		elseif ( bp_is_user_settings() ) :
+			bp_get_template_part( 'members/single/settings' );
 
-				elseif ( bp_is_user_groups() ) :
-					bp_get_template_part( 'members/single/groups'   );
+		// If nothing sticks, load a generic template
+		else :
+			bp_get_template_part( 'members/single/plugins'  );
 
-				elseif ( bp_is_user_messages() ) :
-					bp_get_template_part( 'members/single/messages' );
+		endif;
 
-				elseif ( bp_is_user_profile() ) :
-					bp_get_template_part( 'members/single/profile'  );
-
-				elseif ( bp_is_user_forums() ) :
-					bp_get_template_part( 'members/single/forums'   );
-
-				elseif ( bp_is_user_notifications() ) :
-					bp_get_template_part( 'members/single/notifications' );
-
-				elseif ( bp_is_user_settings() ) :
-					bp_get_template_part( 'members/single/settings' );
-
-				// If nothing sticks, load a generic template
-				else :
-					//bp_get_template_part( 'members/single/plugins'  );
-
-				endif; ?>
-
-			</div>
-		</div><!-- .flexbox-container -->
-
-		<?php
 		/**
-		 * Fires before the display of member body content.
+		 * Fires after the display of member body content.
 		 *
 		 * @since BuddyPress (1.2.0)
 		 */
 		do_action( 'bp_after_member_body' ); ?>
+
 	</div><!-- #item-body -->
 
 	<?php

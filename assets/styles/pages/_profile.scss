@@ -1,0 +1,42 @@
+.page-header {
+  display: none;
+}
+
+#item-header {
+  #item-header-avatar img.avatar {
+    border-radius: 50%;
+  }
+
+  #item-header-content {
+    margin: 2em 0;
+  }
+}
+
+// body also has class profile
+div.profile {
+  display: flex;
+
+  .left {
+    flex: 1;
+  }
+
+  .right {
+    flex: 2;
+    margin-left: -1em;
+  }
+
+  > div {
+    > div {
+      border: 1px solid black;
+      margin: 1em;
+      padding: 0 .5em .5em;
+
+      ul {
+        margin-bottom: 0;
+      }
+      p {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

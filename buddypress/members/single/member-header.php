@@ -1,8 +1,4 @@
 <?php
-ini_set( 'xdebug.overload_var_dump', false );
-
-$x = bp_get_member_type(1);
-var_dump($x);die;
 
 /**
  * BuddyPress - Users Header
@@ -11,6 +7,14 @@ var_dump($x);die;
  * @subpackage bp-legacy
  */
 
+/**
+ * Avatar  Name               N items in CORE
+ *         Title              N groups
+ *         Place of Work      N sites
+ *         twitter            Following N members
+ *         www.site.com       Follow button
+ *         social media icons
+ */
 ?>
 
 <?php
@@ -24,19 +28,30 @@ do_action( 'bp_before_member_header' ); ?>
 
 <div id="item-header-avatar">
 	<a href="<?php bp_displayed_user_link(); ?>">
-
 		<?php bp_displayed_user_avatar( 'type=full' ); ?>
-
 	</a>
 </div><!-- #item-header-avatar -->
 
 <div id="item-header-content">
 
-	<?php if ( bp_is_active( 'activity' ) && bp_activity_do_mentions() ) : ?>
-		<h2 class="user-nicename">@<?php bp_displayed_user_mentionname(); ?></h2>
-	<?php endif; ?>
-
-	<span class="activity"><?php bp_last_activity( bp_displayed_user_id() ); ?></span>
+	<div class="name">
+		<?php bp_member_profile_data( 'field=Name' ) ?>
+	</div>
+	<div class="title">
+		<?php bp_member_profile_data( 'field=Title' ) ?>
+	</div>
+	<div class="affiliation">
+		<?php bp_member_profile_data( 'field=Institutional or Other Affiliation' ) ?>
+	</div>
+	<div class="twitter">
+		<?php // TODO handle @ automatically? ?>
+		<a href="https://twitter.com/<?php bp_member_profile_data( 'field=<em>Twitter</em> user name' ) ?>">
+			@<?php bp_member_profile_data( 'field=<em>Twitter</em> user name' ) ?>
+		</a>
+	</div>
+	<div class="site">
+		<?php bp_member_profile_data( 'field=Site' ) ?>
+	</div>
 
 	<?php
 
@@ -48,16 +63,6 @@ do_action( 'bp_before_member_header' ); ?>
 	do_action( 'bp_before_member_header_meta' ); ?>
 
 	<div id="item-meta">
-
-		<?php if ( bp_is_active( 'activity' ) ) : ?>
-
-			<div id="latest-update">
-
-				<?php bp_activity_latest_update( bp_displayed_user_id() ); ?>
-
-			</div>
-
-		<?php endif; ?>
 
 		<div id="item-buttons">
 
