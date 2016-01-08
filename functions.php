@@ -58,7 +58,15 @@ remove_action( 'bp_before_member_header_meta', array( BP_Profile_Progression::in
  * limit max & scope (to displayed user id)
  * @return string Query string for the activity/members/groups/blogs/forums loops
  */
-function bp_levitin_ajax_querystring( $query_string, $object ) {
-	return $query_string .= '&max=10&user_id=' . bp_displayed_user_id();
+function bp_levitin_ajax_querystring( $query_string ) {
+	$args = wp_parse_args( $query_string );
+
+	$args['max'] = 10;
+	$args['scope'] = 'just-me'; // "me" refers to the displayed user, not necessarily the current session
+
+	$query_string = http_build_query($args);
+
+	return $query_string;
 }
-add_filter( 'bp_ajax_querystring', 'bp_levitin_ajax_querystring' );
+// priority must be higher than 10 since that's what the default filter uses
+add_filter( 'bp_ajax_querystring', 'bp_levitin_ajax_querystring', 100 );
