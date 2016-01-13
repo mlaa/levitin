@@ -77,7 +77,21 @@ do_action( 'bp_before_profile_loop_content' ); ?>
 	</div>
 	<div class="work-shared-in-core">
 		<h4>Work Shared in CORE</h4>
-		<p>TODO</p>
+		<?php if ( humcore_has_deposits( bp_ajax_querystring( 'deposits' ) ) ) : ?>
+			<ul>
+			<?php while ( humcore_deposits() ) : humcore_the_deposit(); ?>
+				<?php
+					$metadata = (array) humcore_get_current_deposit();
+					$item_url = sprintf( '%1$s/deposits/item/%2$s', bp_get_root_domain(), $metadata['pid'] );
+				?>
+				<li>
+					<a href="<?php echo esc_url( $item_url ); ?>/"><?php echo $metadata['title_unchanged']; ?></a>
+				</li>
+			<?php endwhile; ?>
+			</ul>
+		<?php else: ?>
+			<p><?php _e( 'Sorry, there were no deposits found.', 'buddypress' ); ?></p>
+		<?php endif; ?>
 	</div>
 	<div class="upcoming-talks-and-conferences">
 		<h4>Upcoming Talks and Conferences</h4>
