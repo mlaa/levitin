@@ -15,6 +15,10 @@
  *         www.site.com       Follow button
  *         social media icons
  */
+
+$twitter_handle = str_replace( '@', '', bp_get_member_profile_data( 'field=<em>Twitter</em> user name' ) ); // remove '@' if necessary
+$follow_counts = bp_follow_total_follow_counts();
+
 ?>
 
 <?php
@@ -34,24 +38,29 @@ do_action( 'bp_before_member_header' ); ?>
 
 <div id="item-header-content">
 
-	<div class="name">
-		<?php bp_member_profile_data( 'field=Name' ) ?>
-	</div>
-	<div class="title">
-		<?php bp_member_profile_data( 'field=Title' ) ?>
-	</div>
-	<div class="affiliation">
-		<?php bp_member_profile_data( 'field=Institutional or Other Affiliation' ) ?>
-	</div>
-	<div class="twitter">
-		<?php // TODO handle @ automatically? ?>
-		<a href="https://twitter.com/<?php bp_member_profile_data( 'field=<em>Twitter</em> user name' ) ?>">
-			@<?php bp_member_profile_data( 'field=<em>Twitter</em> user name' ) ?>
-		</a>
-	</div>
-	<div class="site">
-		<?php bp_member_profile_data( 'field=Site' ) ?>
-	</div>
+	<div id="item-main">
+		<h4 class="name">
+			<?php bp_member_profile_data( 'field=Name' ) ?>
+		</h4>
+		<h4 class="title">
+			<?php bp_member_profile_data( 'field=Title' ) ?>
+		</h4>
+		<h4 class="affiliation">
+			<?php bp_member_profile_data( 'field=Institutional or Other Affiliation' ) ?>
+		</h4>
+		<?php if ( ! empty( $twitter_handle ) ): ?>
+		<div class="twitter">
+			<a href="https://twitter.com/<?php echo $twitter_handle ?>">
+				<?php echo "@$twitter_handle" ?>
+			</a>
+		</div>
+		<?php endif ?>
+		<?php if ( ! empty( bp_get_member_profile_data( 'field=Site' ) ) ): ?>
+		<div class="site">
+			<?php bp_member_profile_data( 'field=Site' ) ?>
+		</div>
+		<?php endif ?>
+	</div><!-- #item-main -->
 
 	<?php
 
@@ -63,6 +72,19 @@ do_action( 'bp_before_member_header' ); ?>
 	do_action( 'bp_before_member_header_meta' ); ?>
 
 	<div id="item-meta">
+
+		<div class="n-items-in-core">
+			<?php humcore_deposit_count() ?> items in CORE
+		</div>
+		<div class="n-groups">
+			<?php bp_total_group_count_for_user() ?> groups
+		</div>
+		<div class="n-sites">
+			<?php bp_total_blog_count_for_user() ?> sites
+		</div>
+		<div class="following-n-members">
+			Following <?php echo $follow_counts['following'] ?> members
+		</div>
 
 		<div id="item-buttons">
 
@@ -94,6 +116,9 @@ do_action( 'bp_before_member_header' ); ?>
 	</div><!-- #item-meta -->
 
 </div><!-- #item-header-content -->
+
+<div id="item-header-stats">
+</div><!-- #item-header-stats -->
 
 <?php
 

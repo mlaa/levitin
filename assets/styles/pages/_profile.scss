@@ -9,6 +9,16 @@
 
   #item-header-content {
     margin: 2em 0;
+    display: flex;
+    width: 100%;
+
+    #item-main {
+      flex: 1;
+    }
+    #item-meta {
+      flex: 1;
+      text-align: right;
+    }
   }
 }
 

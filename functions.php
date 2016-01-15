@@ -65,15 +65,18 @@ function bp_levitin_ajax_querystring( $query_string ) {
 	// max is intended to affect activity, groups, and blogs
 	$args['max'] = 10;
 
-	// scope is intended to affect activity (groups and blogs don't need it)
+	// scope is intended to affect activity (groups and blogs don't need it, but it doesn't hurt)
 	$args['scope'] = 'just-me'; // "me" refers to the displayed user, not necessarily the current session
 
+	// NOTE this has been scrapped in favor of building the querystring in the template itself, like in the humcore plugin templates
 	// search_facets is intended to affect CORE deposits
 	//$args['search_facets'] = [
 	//	'author_facet' => [
 	//		$bp->displayed_user->userdata->display_name
 	//	]
 	//];
+
+	$query_string = http_build_query($args);
 
 	return $query_string;
 }
