@@ -55,16 +55,25 @@ remove_action( 'bp_group_header_meta', 'ass_group_subscribe_button' );
 remove_action( 'bp_before_member_header_meta', array( BP_Profile_Progression::instance(), 'member_display' ) );
 
 /**
- * limit max & scope (to displayed user id)
+ * add some constraints for profile blocks
  * @return string Query string for the activity/members/groups/blogs/forums loops
  */
 function bp_levitin_ajax_querystring( $query_string ) {
+	global $bp;
 	$args = wp_parse_args( $query_string );
 
+	// max is intended to affect activity, groups, and blogs
 	$args['max'] = 10;
+
+	// scope is intended to affect activity (groups and blogs don't need it)
 	$args['scope'] = 'just-me'; // "me" refers to the displayed user, not necessarily the current session
 
-	$query_string = http_build_query($args);
+	// search_facets is intended to affect CORE deposits
+	//$args['search_facets'] = [
+	//	'author_facet' => [
+	//		$bp->displayed_user->userdata->display_name
+	//	]
+	//];
 
 	return $query_string;
 }
