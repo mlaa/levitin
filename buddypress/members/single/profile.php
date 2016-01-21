@@ -15,20 +15,19 @@
 
 	<?php
 		// Profile Edit
-		if ( bp_is_current_action( 'edit' ) )
-			locate_template( array( 'members/single/profile/edit.php' ), true );
+		if ( bp_is_current_action( 'edit' ) ) {
+			bp_locate_template( array( 'members/single/profile/edit.php' ), true );
+		}
 
 		// Change Avatar
-		elseif ( bp_is_current_action( 'change-avatar' ) )
-			locate_template( array( 'members/single/profile/change-avatar.php' ), true );
+		elseif ( bp_is_current_action( 'change-avatar' ) ) {
+			bp_locate_template( array( 'members/single/profile/change-avatar.php' ), true );
+		}
 
 		// Display XProfile
-		elseif ( bp_is_active( 'xprofile' ) )
-			locate_template( array( 'members/single/profile/profile-loop.php' ), true );
-
-		// Display WordPress profile (fallback)
-		else
-			locate_template( array( 'members/single/profile/profile-wp.php' ), true );
+		elseif ( bp_is_active( 'xprofile' ) ) {
+			bp_locate_template( array( 'members/single/profile/profile-loop.php' ), true );
+		}
 	?>
 
 </div><!-- .profile -->
