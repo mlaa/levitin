@@ -20,7 +20,7 @@ do_action( 'bp_before_profile_loop_content' ); ?>
 	</div>
 	<div class="recent-commons-activity">
 		<h4>Recent Commons Activity</h4>
-		<?php if ( bp_has_activities( bp_ajax_querystring( 'activity' ) ) ) : ?>
+		<?php if ( bp_has_activities( bp_ajax_querystring( 'activity' ) . '&max=5&scope=just-me' ) ) : ?>
 			<?php while ( bp_activities() ) : bp_the_activity(); ?>
 				<?php bp_activity_action(); ?>
 			<?php endwhile; ?>
