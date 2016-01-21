@@ -52,57 +52,17 @@ unset($file, $filepath);
 remove_action( 'bp_group_header_meta', 'ass_group_subscribe_button' );
 
 // remove profile progression indicator until it has a place
-remove_action( 'bp_before_member_header_meta', array( BP_Profile_Progression::instance(), 'member_display' ) );
-
-// scrapped in favor of appending querystring variables directly in the template where needed
-///**
-// * add some constraints for profile blocks
-// * @return string Query string for the activity/members/groups/blogs/forums loops
-// */
-//function bp_levitin_ajax_querystring( $query_string ) {
-//	global $bp;
-//	$args = wp_parse_args( $query_string );
-//	//var_dump($args);
-//
-//	// max is intended to affect activity, groups, and blogs
-//	$args['max'] = 10;
-//
-//	// scope is intended to affect activity (groups and blogs don't need it, but it doesn't hurt)
-//	$args['scope'] = 'just-me'; // "me" refers to the displayed user, not necessarily the current session
-//
-//	// NOTE this has been scrapped in favor of building the querystring in the template itself, like in the humcore plugin templates
-//	// search_facets is intended to affect CORE deposits
-//	//$args['search_facets'] = [
-//	//	'author_facet' => [
-//	//		$bp->displayed_user->userdata->display_name
-//	//	]
-//	//];
-//
-//	$query_string = http_build_query($args);
-//
-//	return $query_string;
-//}
-// priority must be higher than 10 since that's what the default filter uses
-//add_filter( 'bp_ajax_querystring', 'bp_levitin_ajax_querystring', 100 );
-
-//function levitin_get_activity_action_pre_meta() {
-//	var_dump(__FUNCTION__);
-//	var_dump(func_get_args());die;
-//}
-//add_filter( 'bp_get_activity_action_pre_meta', 'levitin_get_activity_action_pre_meta' );
+if ( class_exists( 'BP_Profile_Progression' ) ) {
+	remove_action( 'bp_before_member_header_meta', array( BP_Profile_Progression::instance(), 'member_display' ) );
+}
 
 /**
  * ripped from BP_Blogs_Blog::get(), so we can add a filter to handle MPO options:
- *
- * else if ( is_user_logged_in() )
- * 	$hidden_sql = "AND wb.public = -1";
- *
  * if it becomes possible to manipulate the sql that function uses with a parameter or global, we should do that instead
  *
  * @param array $return_value what BP_Blogs_Blog::get() returned. will be entirely replaced by this filter
  * @param array $args the args originally passed to BP_Blogs_Blog::get(), so we can reconstruct the query
  */
-
 function more_privacy_options_blogs_get( $return_value, $args ) {
 	global $wpdb;
 
