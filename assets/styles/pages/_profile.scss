@@ -1,68 +1,86 @@
-.page-header {
-  display: none;
-}
-
-#item-header {
-  #item-header-avatar img.avatar {
-    border-radius: 50%;
+body.profile {
+  .page-header {
+    display: none;
   }
 
-  #item-header-content {
-    margin: 2em 0;
-    display: flex;
-    width: 100%;
-
-    #item-main {
-      flex: 1;
+  #item-header {
+    #item-header-avatar img.avatar {
+      border-radius: 50%;
     }
-    #item-meta {
-      flex: 1;
-      text-align: right;
-    }
-  }
-}
 
-// body also has class profile
-div.profile {
-  display: flex;
+    #item-header-content {
+      margin: 2em 0;
+      display: flex;
+      width: 100%;
 
-  .left {
-    flex: 1;
-  }
-
-  .right {
-    flex: 2;
-    margin-left: -1em;
-  }
-
-  > div {
-    .commons-groups,
-    .commons-sites {
-      ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-
-        li {
-          display: inline;
-          background-color: #ccc;
-          margin-right: 1em;
-          padding: 0 .5em;
-        }
+      #item-main {
+        flex: 1;
       }
+      #item-meta {
+        flex: 1;
+        text-align: right;
+      }
+    }
+  }
+
+  // body also has class profile
+  div.profile {
+    display: flex;
+
+    .left {
+      flex: 1;
+    }
+
+    .right {
+      flex: 2;
+      margin-left: -1em;
     }
 
     > div {
-      margin: 1em;
-      padding: 0 .5em .5em;
-      background-color: #eee;
-
-      ul {
-        margin-bottom: 0;
+      h4 {
+        margin-top: 0;
       }
-      p {
-        margin-bottom: 0;
+
+      .commons-groups,
+      .commons-sites {
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+
+          li {
+            display: inline;
+            background-color: #ccc;
+            margin-right: 1em;
+            padding: 0 .5em;
+          }
+        }
+      }
+
+      > div {
+        margin: 1em;
+        padding: .5em;
+        background-color: #eee;
+
+        ul {
+          margin-bottom: 0;
+        }
+        p {
+          margin-bottom: 0;
+        }
       }
     }
+  }
+
+  // TODO do this in php instead, remove_action
+  #post-mention {
+    display: none;
+  }
+  .generic-button {
+    display: inline;
+    margin-left: 1em;
+  }
+  #item-buttons {
+    margin-top: 1em;
   }
 }
