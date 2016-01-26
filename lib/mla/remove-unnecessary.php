@@ -75,7 +75,6 @@ function remove_forums_nav() {
 }
 add_action( 'wp', 'remove_forums_nav', 3 );
 
-
 // remove default profile link handling so we can override it below
 remove_filter( 'bp_get_the_profile_field_value', 'xprofile_filter_link_profile_data' );
 
@@ -94,3 +93,11 @@ remove_action( 'bp_group_header_meta', 'ass_group_subscribe_button' );
 if ( class_exists( 'BP_Profile_Progression' ) ) {
 	remove_action( 'bp_before_member_header_meta', array( BP_Profile_Progression::instance(), 'member_display' ) );
 }
+
+/**
+ * remove the "send public message" button.
+ */
+function levitin_remove_send_public_message_button() {
+	remove_action( 'bp_member_header_actions', 'bp_send_public_message_button', 20 );
+}
+add_action( 'wp', 'levitin_remove_send_public_message_button' ); // 'wp' ensures BuddyPress::setup_actions() has run
