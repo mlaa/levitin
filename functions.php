@@ -48,17 +48,10 @@ foreach ( $cpwpst_includes as $file ) {
 }
 unset($file, $filepath);
 
-// Remove redundant subscription button from group header.
-remove_action( 'bp_group_header_meta', 'ass_group_subscribe_button' );
-
-// remove profile progression indicator until it has a place
-if ( class_exists( 'BP_Profile_Progression' ) ) {
-	remove_action( 'bp_before_member_header_meta', array( BP_Profile_Progression::instance(), 'member_display' ) );
-}
-
 /**
  * ripped from BP_Blogs_Blog::get(), so we can add a filter to handle MPO options:
  * if it becomes possible to manipulate the sql that function uses with a parameter or global, we should do that instead
+ * TODO this should move to its own plugin since it's a MPO/BP patch independent of any theme
  *
  * @param array $return_value what BP_Blogs_Blog::get() returned. will be entirely replaced by this filter
  * @param array $args the args originally passed to BP_Blogs_Blog::get(), so we can reconstruct the query

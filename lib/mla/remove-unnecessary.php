@@ -85,3 +85,11 @@ remove_filter( 'bp_get_the_profile_field_value', 'xprofile_filter_link_profile_d
  * See #141 for details.
  */
 remove_action( 'bp_setup_nav', 'invite_anyone_setup_nav' );
+
+// Remove redundant subscription button from group header.
+remove_action( 'bp_group_header_meta', 'ass_group_subscribe_button' );
+
+// remove profile progression indicator
+if ( class_exists( 'BP_Profile_Progression' ) ) {
+	remove_action( 'bp_before_member_header_meta', array( BP_Profile_Progression::instance(), 'member_display' ) );
+}
