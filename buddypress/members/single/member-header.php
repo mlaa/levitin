@@ -16,7 +16,6 @@
  *         social media icons
  */
 
-$twitter_handle = str_replace( '@', '', bp_get_member_profile_data( 'field=<em>Twitter</em> user name' ) ); // remove '@' if necessary
 $follow_counts = bp_follow_total_follow_counts();
 
 ?>
