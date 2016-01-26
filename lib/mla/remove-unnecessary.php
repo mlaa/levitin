@@ -1,15 +1,16 @@
 <?php
-/* This file contains functions that remove elements that we deem unnecessary.
+/**
+ * This file contains functions that remove elements that we deem unnecessary.
  * Redundant titles, redundant buttons, etc.
  */
 
-/*
+/**
  * Remove redundant email status button in group headings;
  * this is handled by the group tab "Email Options"
  */
 remove_action( 'bp_group_header_meta', 'ass_group_subscribe_button' );
 
-/*
+/**
  * Remove forum subscribe link. Users are already subscribed to the forums
  * when they subscribe to the group. Having more fine-grained control over
  * subscriptions is unnecessary and confusing.
@@ -19,7 +20,7 @@ function mla_remove_forum_subscribe_link( $link ){
 }
 add_filter( 'bbp_get_forum_subscribe_link', 'mla_remove_forum_subscribe_link' );
 
-/*
+/**
  * Remove forum title, since in our use cases forum titles have the same names as
  * their parent groups, and users see a redundant title on group forums pages.
  */
@@ -35,7 +36,7 @@ add_filter( 'bbp_get_forum_title', 'mla_remove_forum_title' );
 add_action( 'bp_before_group_activity_post_form', create_function( '', 'ob_start();' ), 9999 );
 add_action( 'bp_after_group_activity_post_form', create_function( '', 'ob_end_clean();' ), 0 );
 
-/*
+/**
  * Hide settings page (we don't want users changing their
  * e-mail or password).
  */
@@ -55,7 +56,7 @@ function remove_general_subnav() {
 }
 add_action( 'wp', 'remove_general_subnav', 2 );
 
-/*
+/**
  * Remove portfolio subnav area from member activity area settings tab.
  * This page just had lots of visibility settings for CACAP profile areas,
  * but they weren't working properly, and didn't include "free entry" areas.
@@ -66,7 +67,7 @@ function mla_remove_portfolio_subnav() {
 }
 add_action( 'wp', 'mla_remove_portfolio_subnav', 2 );
 
-/*
+/**
  * Remove misbehaving forums tab on profile pages.
  */
 function remove_forums_nav() {

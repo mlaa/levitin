@@ -4,7 +4,7 @@
  * BuddyPress-Group-Email-Subscription
  */
 
-/*
+/**
  * Remove subscription link from groups directory.
  * Because we're about to rewrite it!
  * Get ready for the magic.
@@ -57,7 +57,9 @@ function mla_ass_group_subscribe_button() {
 add_action( 'bp_directory_groups_actions', 'mla_ass_group_subscribe_button' );
 
 
-/* Set default email subscription level for new group members to 'daily digest.' */
+/**
+ * Set default email subscription level for new group members to 'daily digest.'
+ */
 function mla_set_default_email_subscription_level( $default_subscription ) {
 	if ( ! $default_subscription) return 'dig';
 	else return $default_subscription;

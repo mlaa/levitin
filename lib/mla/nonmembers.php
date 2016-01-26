@@ -3,7 +3,8 @@
  * Functions for handling non-members.
  */
 
-/* This function is triggered when a super-admin manually
+/**
+ * This function is triggered when a super-admin manually
  * adds a new member via Network Dashboard -> Users -> Add New.
  * Users with the flag `mla_nonmember` get to skip verification
  * with the Oracle database.

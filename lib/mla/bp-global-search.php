@@ -3,7 +3,7 @@
  * Customizations for the BuddyPress Global Search plugin.
  */
 
-/*
+/**
  * Set default search items. This is a reasonable default
  * so that if the admin forgets to set these searchable items,
  * bp-global-search will still search roughly the things we want.

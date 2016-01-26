@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Filter membership activities out of AJAX querystrings.
  * This effectively makes it so that the "Everything" filter
  * of the Activities page (the default filter that's set when
@@ -33,7 +33,7 @@ add_filter( 'bp_legacy_theme_ajax_querystring', 'mla_filter_querystring', 10, 7 
 remove_action( 'groups_join_group',           'groups_update_last_activity' );
 remove_action( 'groups_leave_group',          'groups_update_last_activity' );
 
-/*
+/**
  * Don't show secondary avatars in activity items. These are little icons next
  * to group and member names. They clutter up activity items and generally make everything
  * look pretty messy. Get rid of them!

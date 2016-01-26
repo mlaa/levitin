@@ -1,10 +1,11 @@
 <?php
-/*
+/**
  * Functions for syncing with the Oracle API, which will update membership
  * information from the MLA member database. Requires the cbox-auth plugin, version >= 2.2.0.
  */
 
-/* Load group membership data from member database on
+/**
+ * Load group membership data from member database on
  * group page load.
  */
 function mla_update_group_membership_data() {

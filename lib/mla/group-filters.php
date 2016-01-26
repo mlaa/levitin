@@ -246,11 +246,11 @@ function mla_reset_filter_cookies() {
 }
 add_action('wp_head', 'mla_reset_filter_cookies');
 
-/* This part adds the MLA Group type
+/**
+ * This part adds the MLA Group type
  * (i.e. Committee, Division, Discussion Group)
- bp* to the Buddypress Group Type display
+ * to the Buddypress Group Type display
  */
-
 function mla_group_type_filter($type, $group="") {
 	global $groups_template;
 
