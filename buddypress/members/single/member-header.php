@@ -48,13 +48,9 @@ do_action( 'bp_before_member_header' ); ?>
 		<h4 class="affiliation">
 			<?php bp_member_profile_data( 'field=Institutional or Other Affiliation' ) ?>
 		</h4>
-		<?php if ( ! empty( $twitter_handle ) ): ?>
-		<div class="twitter">
-			<a href="https://twitter.com/<?php echo $twitter_handle ?>">
-				<?php echo "@$twitter_handle" ?>
-			</a>
+		<div class="username">
+			<?php echo "@" . bp_get_displayed_user_username() ?>
 		</div>
-		<?php endif ?>
 		<?php if ( ! empty( bp_get_member_profile_data( 'field=Site' ) ) ): ?>
 		<div class="site">
 			<?php bp_member_profile_data( 'field=Site' ) ?>
