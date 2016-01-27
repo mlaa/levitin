@@ -81,3 +81,192 @@ function mla_bp_activity_delete_link() {
 		 */
 		return apply_filters( 'bp_get_activity_delete_link', $link );
 	}
+
+
+/**
+ * output an abridged action string (relative to what is stored in the activity table)
+ * use like bp_activity_action()
+ *
+ * @uses bp_get_activity_action()
+ * @uses bp_get_activity_type()
+ * @uses bp_get_displayed_user_fullname()
+ */
+function levitin_activity_action() {
+    $action = bp_get_activity_action( [ 'no_timestamp' => true ] );
+    $activity_type = bp_get_activity_type() ;
+    $user_fullname = bp_get_displayed_user_fullname();
+
+    // (potentially) change/overwrite action string per activity type
+    // TODO some types are not represented here. need to find out why and handle them: edited blog post, uploaded file, posted update
+    switch ( $activity_type ) {
+	case 'activity_update':
+	    break;
+	case 'new_blog_post':
+	    break;
+	case 'new_blog_comment':
+	    break;
+	case 'created_group':
+	    break;
+	case 'updated_profile':
+	    $action = "updated profile";
+	    break;
+	case 'new_forum_topic':
+	    break;
+	case 'new_forum_post':
+	    break;
+	case 'new_groupblog_post':
+	    break;
+	case 'added_group_document':
+	    break;
+	case 'edited_group_document':
+	    break;
+	case 'bp_doc_created':
+	    break;
+	case 'bp_doc_edited':
+	    break;
+	case 'bp_doc_comment':
+	    break;
+	case 'bbp_topic_create':
+	    preg_match( '#started the topic (?<topic>.*) in the discussion (?<discussion>.*)</p>#', $action, $matches );
+	    $action = "started ${matches['topic']} in ${matches['discussion']}";
+	    break;
+	case 'bbp_reply_create':
+	    preg_match( '#replied to the topic (?<topic>.*) in the discussion (?<discussion>.*)</p>#', $action, $matches );
+	    $action = "replied to ${matches['topic']} in ${matches['discussion']}";
+	    break;
+	case 'new_deposit':
+	    break;
+	case 'new_group_deposit':
+	    break;
+	case 'new_member':
+	    break;
+	default:
+	    // TODO exception? we should be covering all possible cases, so default would mean we're missing one
+	    //activity_debug();
+	    break;
+    }
+
+    // remove user's name if necessary
+    $action = preg_replace( "#<a.*>$user_fullname</a> #", '', $action );
+
+    // <p> wrapper
+    $action = "<p class=\"$activity_type\">$action</p>";
+
+    echo $action;
+}
+
+/**
+ * dump of all available bp activity functions and their return values
+ */
+function activity_debug() {
+	echo '<p><pre>';
+	var_dump('bp_get_activity_slug()');
+	var_dump(bp_get_activity_slug());
+	var_dump('bp_get_activity_root_slug()');
+	var_dump(bp_get_activity_root_slug());
+	var_dump('bp_get_activity_directory_permalink()');
+	var_dump(bp_get_activity_directory_permalink());
+	var_dump('bp_get_activity_load_more_link()');
+	var_dump(bp_get_activity_load_more_link());
+	var_dump('bp_get_activity_pagination_count()');
+	var_dump(bp_get_activity_pagination_count());
+	var_dump('bp_get_activity_pagination_links()');
+	var_dump(bp_get_activity_pagination_links());
+	var_dump('bp_get_activity_count()');
+	var_dump(bp_get_activity_count());
+	var_dump('bp_get_activity_per_page()');
+	var_dump(bp_get_activity_per_page());
+	var_dump('bp_get_activity_id()');
+	var_dump(bp_get_activity_id());
+	var_dump('bp_get_activity_item_id()');
+	var_dump(bp_get_activity_item_id());
+	var_dump('bp_get_activity_secondary_item_id()');
+	var_dump(bp_get_activity_secondary_item_id());
+	var_dump('bp_get_activity_date_recorded()');
+	var_dump(bp_get_activity_date_recorded());
+	var_dump('bp_get_activity_member_display_name()');
+	var_dump(bp_get_activity_member_display_name());
+	var_dump('bp_get_activity_object_name()');
+	var_dump(bp_get_activity_object_name());
+	var_dump('bp_get_activity_type()');
+	var_dump(bp_get_activity_type());
+	var_dump('bp_get_activity_action_name()');
+	var_dump(bp_get_activity_action_name());
+	var_dump('bp_get_activity_user_id()');
+	var_dump(bp_get_activity_user_id());
+	var_dump('bp_get_activity_user_link()');
+	var_dump(bp_get_activity_user_link());
+	var_dump('bp_get_activity_avatar()');
+	var_dump(bp_get_activity_avatar());
+	var_dump('bp_get_activity_secondary_avatar()');
+	var_dump(bp_get_activity_secondary_avatar());
+	var_dump('bp_get_activity_action()');
+	var_dump(bp_get_activity_action());
+	var_dump('bp_get_activity_content_body()');
+	var_dump(bp_get_activity_content_body());
+	var_dump('bp_get_activity_content()');
+	var_dump(bp_get_activity_content());
+	var_dump('bp_get_activity_parent_content()');
+	var_dump(bp_get_activity_parent_content());
+	var_dump('bp_get_activity_parent_user_id()');
+	var_dump(bp_get_activity_parent_user_id());
+	var_dump('bp_get_activity_is_favorite()');
+	var_dump(bp_get_activity_is_favorite());
+	var_dump('bp_get_activity_comment_id()');
+	var_dump(bp_get_activity_comment_id());
+	var_dump('bp_get_activity_comment_user_id()');
+	var_dump(bp_get_activity_comment_user_id());
+	var_dump('bp_get_activity_comment_user_link()');
+	var_dump(bp_get_activity_comment_user_link());
+	var_dump('bp_get_activity_comment_name()');
+	var_dump(bp_get_activity_comment_name());
+	var_dump('bp_get_activity_comment_date_recorded()');
+	var_dump(bp_get_activity_comment_date_recorded());
+	var_dump('bp_get_activity_comment_date_recorded_raw()');
+	var_dump(bp_get_activity_comment_date_recorded_raw());
+	var_dump('bp_get_activity_comment_delete_link()');
+	var_dump(bp_get_activity_comment_delete_link());
+	var_dump('bp_get_activity_comment_content()');
+	var_dump(bp_get_activity_comment_content());
+	var_dump('bp_get_activity_comment_link()');
+	var_dump(bp_get_activity_comment_link());
+	var_dump('bp_get_activity_comment_form_nojs_display()');
+	var_dump(bp_get_activity_comment_form_nojs_display());
+	var_dump('bp_get_activity_comment_form_action()');
+	var_dump(bp_get_activity_comment_form_action());
+	var_dump('bp_get_activity_permalink_id()');
+	var_dump(bp_get_activity_permalink_id());
+	var_dump('bp_get_activity_thread_permalink()');
+	var_dump(bp_get_activity_thread_permalink());
+	var_dump('bp_get_activity_comment_permalink()');
+	var_dump(bp_get_activity_comment_permalink());
+	var_dump('bp_get_activity_favorite_link()');
+	var_dump(bp_get_activity_favorite_link());
+	var_dump('bp_get_activity_unfavorite_link()');
+	var_dump(bp_get_activity_unfavorite_link());
+	var_dump('bp_get_activity_css_class()');
+	var_dump(bp_get_activity_css_class());
+	var_dump('bp_get_activity_delete_link()');
+	var_dump(bp_get_activity_delete_link());
+	var_dump('bp_get_activity_delete_url()');
+	var_dump(bp_get_activity_delete_url());
+	var_dump('bp_get_activity_latest_update()');
+	var_dump(bp_get_activity_latest_update());
+	var_dump('bp_get_activity_filter_links()');
+	var_dump(bp_get_activity_filter_links());
+	var_dump('bp_get_activity_post_form_action()');
+	var_dump(bp_get_activity_post_form_action());
+	var_dump('bp_get_activity_feed_item_guid()');
+	var_dump(bp_get_activity_feed_item_guid());
+	var_dump('bp_get_activity_feed_item_title()');
+	var_dump(bp_get_activity_feed_item_title());
+	var_dump('bp_get_activity_feed_item_link()');
+	var_dump(bp_get_activity_feed_item_link());
+	var_dump('bp_get_activity_feed_item_date()');
+	var_dump(bp_get_activity_feed_item_date());
+	var_dump('bp_get_activity_feed_item_description()');
+	var_dump(bp_get_activity_feed_item_description());
+	var_dump('bp_get_activity_show_filters()');
+	var_dump(bp_get_activity_show_filters());
+	echo '</pre></p>';
+}

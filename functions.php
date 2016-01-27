@@ -64,10 +64,10 @@ function more_privacy_options_blogs_get( $return_value, $args ) {
 	$bp = buddypress();
 
 	if ( is_user_logged_in() ) {
-		$hidden_sql = "AND wb.public in (1, -1)";
+		$hidden_sql = "AND wb.public in (1, -1)"; // this accommodates More Privacy Options
 	} else {
 		if ( !is_user_logged_in() || !bp_current_user_can( 'bp_moderate' ) && ( $user_id != bp_loggedin_user_id() ) )
-			$hidden_sql = "AND wb.public = 1";
+			$hidden_sql = "AND wb.public = 1"; // this does not consider any values of "public" added by MPO
 		else
 			$hidden_sql = '';
 	}

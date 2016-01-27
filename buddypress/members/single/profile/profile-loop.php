@@ -22,7 +22,10 @@ do_action( 'bp_before_profile_loop_content' ); ?>
 		<h4>Recent Commons Activity</h4>
 		<?php if ( bp_has_activities( bp_ajax_querystring( 'activity' ) . '&max=5&scope=just-me' ) ) : ?>
 			<?php while ( bp_activities() ) : bp_the_activity(); ?>
-				<?php bp_activity_action(); ?>
+				<?php
+					levitin_activity_action();
+					//bp_activity_action();
+				?>
 			<?php endwhile; ?>
 		<?php else : ?>
 			<p><?php _e( 'Sorry, there was no activity found. Please try a different filter.', 'buddypress' ); ?></p>
