@@ -95,6 +95,7 @@ function levitin_activity_action() {
     $action = bp_get_activity_action( [ 'no_timestamp' => true ] );
     $activity_type = bp_get_activity_type() ;
     $user_fullname = bp_get_displayed_user_fullname();
+    $link_text_char_limit = 30;
 
     // (potentially) change/overwrite action string per activity type
     // TODO some types are not represented here. need to find out why and handle them: edited blog post, uploaded file, posted update
@@ -145,6 +146,16 @@ function levitin_activity_action() {
 	    //activity_debug();
 	    break;
     }
+
+    // shorten linked text
+    $action_doc = new DOMDocument;
+    $action_doc->loadHTML( $action, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD ); // constants here ensure no <body> or <doctype> tags are added
+    foreach ( $action_doc->getElementsByTagName( 'a' ) as $anchor ) {
+	if ( strlen( $anchor->nodeValue ) > $link_text_char_limit ) {
+	    $anchor->nodeValue = substr( $anchor->nodeValue, 0, $link_text_char_limit - 1 ) . '...';
+	}
+    }
+    $action = $action_doc->saveHTML();
 
     // remove user's name if necessary
     $action = preg_replace( "#<a.*>$user_fullname</a> #", '', $action );
