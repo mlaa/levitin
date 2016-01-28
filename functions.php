@@ -34,7 +34,6 @@ $cpwpst_includes = [
 	'lib/mla/groupblog.php',           // Customizations for the BP-Groupblog plugin
 	'lib/mla/messages-search.php',     // Functions for the messages search
 	'lib/mla/nonmembers.php',          // Functions for handling nonmembers
-	'lib/mla/oracle-api-sync.php',     // Functions for syncing membership data with the MLA API
 	'lib/mla/portfolios.php',          // Functions to customize CACAP "Portfolios"
 	'lib/mla/remove-unnecessary.php',  // Remove stuff
 ];
