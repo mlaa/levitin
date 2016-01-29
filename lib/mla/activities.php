@@ -82,7 +82,6 @@ function mla_bp_activity_delete_link() {
 		return apply_filters( 'bp_get_activity_delete_link', $link );
 	}
 
-
 /**
  * output an abridged action string (relative to what is stored in the activity table)
  * use like bp_activity_action()
@@ -92,76 +91,44 @@ function mla_bp_activity_delete_link() {
  * @uses bp_get_displayed_user_fullname()
  */
 function levitin_activity_action() {
-    $action = bp_get_activity_action( [ 'no_timestamp' => true ] );
+    $action = trim( strip_tags( bp_get_activity_action( [ 'no_timestamp' => true ] ), '<a>' ) );
     $activity_type = bp_get_activity_type() ;
-    $user_fullname = bp_get_displayed_user_fullname();
+    $displayed_user_fullname = bp_get_displayed_user_fullname();
     $link_text_char_limit = 30;
 
-    // (potentially) change/overwrite action string per activity type
-    // TODO some types are not represented here. need to find out why and handle them: edited blog post, uploaded file, posted update
+    // shorten/change some action descriptions
     switch ( $activity_type ) {
-	case 'activity_update':
-	    break;
-	case 'new_blog_post':
-	    break;
-	case 'new_blog_comment':
-	    break;
-	case 'created_group':
-	    break;
 	case 'updated_profile':
-	    $action = "updated profile";
-	    break;
-	case 'new_forum_topic':
-	    break;
-	case 'new_forum_post':
-	    break;
-	case 'new_groupblog_post':
-	    break;
-	case 'added_group_document':
-	    break;
-	case 'edited_group_document':
-	    break;
-	case 'bp_doc_created':
-	    break;
-	case 'bp_doc_edited':
-	    break;
-	case 'bp_doc_comment':
-	    break;
-	case 'bbp_topic_create':
-	    preg_match( '#started the topic (?<topic>.*) in the discussion (?<discussion>.*)</p>#', $action, $matches );
-	    $action = "started ${matches['topic']} in ${matches['discussion']}";
-	    break;
-	case 'bbp_reply_create':
-	    preg_match( '#replied to the topic (?<topic>.*) in the discussion (?<discussion>.*)</p>#', $action, $matches );
-	    $action = "replied to ${matches['topic']} in ${matches['discussion']}";
-	    break;
-	case 'new_deposit':
-	    break;
-	case 'new_group_deposit':
-	    break;
-	case 'new_member':
-	    break;
-	default:
-	    // TODO exception? we should be covering all possible cases, so default would mean we're missing one
-	    //activity_debug();
+	    $action = "updated profile"; // default action is "<name>'s profile was updated"
 	    break;
     }
 
-    // shorten linked text
+    // some types end their action strings with ':' - remove it
+    $action = preg_replace( '/:$/', '', $action );
+
+    // div wrapper not only serves to contain the action text but also helps DOMDocument traverse the "tree" without breaking it
+    $action = "<div class=\"$activity_type\">" . $action . '</div>';
+
     $action_doc = new DOMDocument;
-    $action_doc->loadHTML( $action, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD ); // constants here ensure no <body> or <doctype> tags are added
+
+    // encoding prevents mangling of multibyte characters
+    // constants ensure no <body> or <doctype> tags are added
+    $action_doc->loadHTML( mb_convert_encoding( $action, 'HTML-ENTITIES', 'UTF-8' ), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
+
+    // for reasons yet unknown, removeChild() causes the next anchor to be skipped entirely. using a second foreach is a workaround
     foreach ( $action_doc->getElementsByTagName( 'a' ) as $anchor ) {
-	if ( strlen( $anchor->nodeValue ) > $link_text_char_limit ) {
-	    $anchor->nodeValue = substr( $anchor->nodeValue, 0, $link_text_char_limit - 1 ) . '...';
+	if ( $anchor->nodeValue === $displayed_user_fullname ) {
+	    $anchor->parentNode->removeChild( $anchor );
+	    break;
 	}
     }
+    foreach ( $action_doc->getElementsByTagName( 'a' ) as $anchor ) {
+	if ( strlen( $anchor->nodeValue ) > $link_text_char_limit ) {
+	    $anchor->nodeValue = substr( $anchor->nodeValue, 0, $link_text_char_limit - 1 ) . '…';
+	}
+    }
+
     $action = $action_doc->saveHTML();
-
-    // remove user's name if necessary
-    $action = preg_replace( "#<a.*>$user_fullname</a> #", '', $action );
-
-    // <p> wrapper
-    $action = "<p class=\"$activity_type\">$action</p>";
 
     echo $action;
 }
