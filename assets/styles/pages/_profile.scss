@@ -61,7 +61,16 @@ body.profile {
             display: inline;
             background-color: #ccc;
             margin-right: 1em;
-            padding: 0 .5em;
+
+            a:hover {
+              text-decoration: none;
+              background-color: #999;
+            }
+            // each word is wrapped in a span to allow for padding words at the end of lines
+            span {
+              padding: 0 .25em;
+              display: inline-block;
+            }
           }
         }
       }

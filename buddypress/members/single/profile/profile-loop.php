@@ -37,7 +37,9 @@ do_action( 'bp_before_profile_loop_content' ); ?>
 			<ul>
 			<?php while ( bp_groups() ) : bp_the_group(); ?>
 				<li>
-					<a href="<?php bp_group_permalink(); ?>"><?php bp_group_name(); ?></a>
+					<a href="<?php bp_group_permalink(); ?>">
+						<span><?php echo str_replace( ' ', '</span><span>', bp_get_group_name() ); ?></span>
+					</a>
 				</li>
 			<?php endwhile; ?>
 			</ul>
@@ -51,7 +53,9 @@ do_action( 'bp_before_profile_loop_content' ); ?>
 			<ul>
 			<?php while ( bp_blogs() ) : bp_the_blog(); ?>
 				<li>
-					<a href="<?php bp_blog_permalink(); ?>"><?php bp_blog_name(); ?></a>
+					<a href="<?php bp_blog_permalink(); ?>">
+						<span><?php echo str_replace( ' ', '</span><span>', bp_get_blog_name() ); ?></span>
+					</a>
 				</li>
 			<?php endwhile; ?>
 			</ul>
