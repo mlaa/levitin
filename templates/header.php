@@ -1,6 +1,6 @@
 <header id="main-site-header" class="banner" role="banner">
 	<a class="brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-		<?php bloginfo( 'name' ); ?>
+		<img src="<?php bloginfo('template_directory'); ?>/assets/images/mla-commons-logo.png" alt="<?php bloginfo( 'name' ); ?>">
 	</a>
 	<nav role="navigation">
 		<?php
