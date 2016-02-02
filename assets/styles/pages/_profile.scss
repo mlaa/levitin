@@ -59,8 +59,12 @@ body.profile {
 
           li {
             display: inline;
-            background-color: #ccc;
             margin-right: 1em;
+
+            a {
+              background-color: #ccc;
+              border-radius: 1em;
+            }
 
             a:hover {
               text-decoration: none;
