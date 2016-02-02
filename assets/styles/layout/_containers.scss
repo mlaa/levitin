@@ -31,7 +31,7 @@
 .item-avatar {
   img {
     @include tile;
-    border-radius: 3px;
+    border-radius: 50%;
     display: block;
     margin-left: 1em;
   }
