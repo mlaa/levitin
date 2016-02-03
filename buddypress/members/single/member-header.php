@@ -78,7 +78,13 @@ do_action( 'bp_before_member_header' ); ?>
 			<?php bp_total_blog_count_for_user() ?> sites
 		</div>
 		<div class="following-n-members">
-			Following <?php echo $follow_counts['following'] ?> members
+			<?php if ( bp_displayed_user_id() === bp_loggedin_user_id() ): ?>
+				<a href="<?php echo bp_loggedin_user_domain() . BP_FOLLOWING_SLUG ?>">
+			<?php endif ?>
+				<?php printf( __( 'Following <span>%d</span> members', 'bp-follow' ), $follow_counts['following'] ) ?>
+			<?php if ( bp_displayed_user_id() === bp_loggedin_user_id() ): ?>
+				</a>
+			<?php endif ?>
 		</div>
 
 		<div id="item-buttons">
