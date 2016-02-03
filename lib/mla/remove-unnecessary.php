@@ -101,3 +101,31 @@ function levitin_remove_send_public_message_button() {
 	remove_action( 'bp_member_header_actions', 'bp_send_public_message_button', 20 );
 }
 add_action( 'wp', 'levitin_remove_send_public_message_button' ); // 'wp' ensures BuddyPress::setup_actions() has run
+
+/**
+ * turn options nav li elements into buttons
+ */
+function levitin_convert_options_nav_items_to_buttons( $li ) {
+	// convert <li> to <div>
+	$div = preg_replace( '#<li(.*)li>#', '<div$1div>', $li );
+
+	$doc = new DOMDocument;
+
+	// encoding prevents mangling of multibyte characters
+	// constants ensure no <body> or <doctype> tags are added
+	$doc->loadHTML( mb_convert_encoding( $div, 'HTML-ENTITIES', 'UTF-8' ), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
+
+	$doc_div = $doc->getElementsByTagName( 'div' )[0];
+
+	$doc_div->setAttribute( 'class', $doc_div->getAttribute( 'class' ) . ' generic-button' );
+
+	return $doc->saveHTML();
+}
+foreach ( array( 'edit', 'change-avatar' ) as $a_id ) {
+	add_filter( 'bp_get_options_nav_' . $a_id, 'levitin_convert_options_nav_items_to_buttons' );
+}
+
+// disable some options nav items
+foreach ( array( 'public', 'change-cover-image' ) as $a_id ) {
+	add_filter( 'bp_get_options_nav_' . $a_id, '__return_false' );
+}
