@@ -50,6 +50,51 @@ body.profile {
         margin-top: 0;
       }
 
+      .recent-commons-activity {
+        div {
+          padding: 5px 0 5px 50px;
+          background-position: center left;
+          background-repeat: no-repeat;
+        }
+
+        div.activity_update {
+        }
+        div.new_blog_post {
+        }
+        div.new_blog_comment {
+        }
+        div.created_group {
+        }
+        div.updated_profile {
+        }
+        div.new_forum_topic {
+        }
+        div.new_forum_post {
+        }
+        div.new_groupblog_post {
+        }
+        div.added_group_document {
+        }
+        div.edited_group_document {
+        }
+        div.bp_doc_created {
+        }
+        div.bp_doc_edited {
+        }
+        div.bp_doc_comment {
+        }
+        div.bbp_topic_create {
+        }
+        div.bbp_reply_create {
+        }
+        div.new_deposit {
+        }
+        div.new_group_deposit {
+        }
+        div.new_member {
+        }
+      }
+
       .commons-groups,
       .commons-sites {
         ul {
