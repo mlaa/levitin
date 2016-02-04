@@ -91,46 +91,46 @@ function mla_bp_activity_delete_link() {
  * @uses bp_get_displayed_user_fullname()
  */
 function levitin_activity_action() {
-    $action = trim( strip_tags( bp_get_activity_action( [ 'no_timestamp' => true ] ), '<a>' ) );
-    $activity_type = bp_get_activity_type() ;
-    $displayed_user_fullname = bp_get_displayed_user_fullname();
-    $link_text_char_limit = 30;
+	$action = trim( strip_tags( bp_get_activity_action( [ 'no_timestamp' => true ] ), '<a>' ) );
+	$activity_type = bp_get_activity_type() ;
+	$displayed_user_fullname = bp_get_displayed_user_fullname();
+	$link_text_char_limit = 30;
 
-    // shorten/change some action descriptions
-    switch ( $activity_type ) {
+	// shorten/change some action descriptions
+	switch ( $activity_type ) {
 	case 'updated_profile':
-	    $action = "updated profile"; // default action is "<name>'s profile was updated"
-	    break;
-    }
-
-    // some types end their action strings with ':' - remove it
-    $action = preg_replace( '/:$/', '', $action );
-
-    // div wrapper not only serves to contain the action text but also helps DOMDocument traverse the "tree" without breaking it
-    $action = "<div class=\"$activity_type\">" . $action . '</div>';
-
-    $action_doc = new DOMDocument;
-
-    // encoding prevents mangling of multibyte characters
-    // constants ensure no <body> or <doctype> tags are added
-    $action_doc->loadHTML( mb_convert_encoding( $action, 'HTML-ENTITIES', 'UTF-8' ), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
-
-    // for reasons yet unknown, removeChild() causes the next anchor to be skipped entirely. using a second foreach is a workaround
-    foreach ( $action_doc->getElementsByTagName( 'a' ) as $anchor ) {
-	if ( $anchor->nodeValue === $displayed_user_fullname ) {
-	    $anchor->parentNode->removeChild( $anchor );
-	    break;
+		$action = "updated profile"; // default action is "<name>'s profile was updated"
+		break;
 	}
-    }
-    foreach ( $action_doc->getElementsByTagName( 'a' ) as $anchor ) {
-	if ( strlen( $anchor->nodeValue ) > $link_text_char_limit ) {
-	    $anchor->nodeValue = substr( $anchor->nodeValue, 0, $link_text_char_limit - 1 ) . '…';
+
+	// some types end their action strings with ':' - remove it
+	$action = preg_replace( '/:$/', '', $action );
+
+	// div wrapper not only serves to contain the action text but also helps DOMDocument traverse the "tree" without breaking it
+	$action = "<div class=\"$activity_type\">" . $action . '</div>';
+
+	$action_doc = new DOMDocument;
+
+	// encoding prevents mangling of multibyte characters
+	// constants ensure no <body> or <doctype> tags are added
+	$action_doc->loadHTML( mb_convert_encoding( $action, 'HTML-ENTITIES', 'UTF-8' ), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
+
+	// for reasons yet unknown, removeChild() causes the next anchor to be skipped entirely. using a second foreach is a workaround
+	foreach ( $action_doc->getElementsByTagName( 'a' ) as $anchor ) {
+		if ( $anchor->nodeValue === $displayed_user_fullname ) {
+			$anchor->parentNode->removeChild( $anchor );
+			break;
+		}
 	}
-    }
+	foreach ( $action_doc->getElementsByTagName( 'a' ) as $anchor ) {
+		if ( strlen( $anchor->nodeValue ) > $link_text_char_limit ) {
+			$anchor->nodeValue = substr( $anchor->nodeValue, 0, $link_text_char_limit - 1 ) . '…';
+		}
+	}
 
-    $action = $action_doc->saveHTML();
+	$action = $action_doc->saveHTML();
 
-    echo $action;
+	echo $action;
 }
 
 /**
