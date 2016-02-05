@@ -63,11 +63,21 @@ function levitin_edit_profile_field( $field_name ) {
 			continue;
 		}
 
+		ob_start();
+
 		echo '<div' . bp_get_field_css_class( 'editfield' ) . '>';
 
 		$field_type = bp_xprofile_create_field_type( bp_get_the_profile_field_type() );
 		$field_type->edit_field_html();
 
 		echo '<p class="description">' . bp_get_the_profile_field_description() . '</p></div>';
+
+		$output = ob_get_clean();
+
+		$output = preg_replace( '#<label[\S\s]*label>#', '', $output );
+
+		echo $output;
+
+		break; // once we output the field we want, no need to continue looping
 	}
 }
