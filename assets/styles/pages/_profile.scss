@@ -36,6 +36,11 @@ body.profile {
   div.profile {
     display: flex;
 
+    // for edit view
+    form {
+      display: flex;
+    }
+
     .left {
       flex: 1;
     }
@@ -45,7 +50,8 @@ body.profile {
       margin-left: -1em;
     }
 
-    > div {
+    .left,
+    .right {
       h4 {
         margin-top: 0;
       }

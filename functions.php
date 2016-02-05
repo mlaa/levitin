@@ -1,7 +1,7 @@
 <?php
 
 // Turn down error reporting, specifically to ignore Infinity-generated warnings.
-ini_set('error_reporting', E_ALL & ~E_WARNING & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT);
+//ini_set('error_reporting', E_ALL & ~E_WARNING & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT);
 
 /**
  * Levitin includes
@@ -46,3 +46,28 @@ foreach ( $cpwpst_includes as $file ) {
 	require_once $filepath;
 }
 unset($file, $filepath);
+
+/**
+ * for edit view. use like bp_the_profile_field().
+ * works inside or outside the fields loop.
+ * TODO optimize: find some way to look up fields directly rather than (re)winding the loop every time.
+ *
+ * @param $field_name
+ *
+ */
+function levitin_edit_profile_field( $field_name ) {
+	while ( bp_profile_fields() ) {
+		bp_the_profile_field();
+
+		if ( bp_get_the_profile_field_name() !== $field_name ) {
+			continue;
+		}
+
+		echo '<div' . bp_get_field_css_class( 'editfield' ) . '>';
+
+		$field_type = bp_xprofile_create_field_type( bp_get_the_profile_field_type() );
+		$field_type->edit_field_html();
+
+		echo '<p class="description">' . bp_get_the_profile_field_description() . '</p></div>';
+	}
+}

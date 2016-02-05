@@ -1,15 +1,5 @@
 <?php
 
-/**
- * Professional Interests  About
- * Recent Commons Activity Education
- * Commons Groups          Publications
- * Commons Sites           Projects
- *                         Work Shared in CORE
- *                         Upcoming Talks and Conferences
- *                         Memberships
- */
-
 /** This action is documented in bp-templates/bp-legacy/buddypress/members/single/profile/profile-wp.php */
 do_action( 'bp_before_profile_loop_content' ); ?>
 
