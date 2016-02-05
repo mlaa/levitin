@@ -74,7 +74,7 @@ function levitin_edit_profile_field( $field_name ) {
 
 		$output = ob_get_clean();
 
-		$output = preg_replace( '#<label[\S\s]*label>#', '', $output );
+		$output = preg_replace( '#<label.*label>#s', '', $output );
 
 		echo $output;
 
