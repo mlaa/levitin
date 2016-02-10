@@ -19,7 +19,7 @@ if ( bp_has_profile( 'profile_group_id=' . bp_get_current_profile_group_id() ) )
 	<form action="<?php bp_the_profile_group_edit_form_action(); ?>" method="post" id="profile-edit-form" class="standard-form <?php bp_the_profile_group_slug(); ?>">
 
 		<div class="left">
-			<div class="academic-interests <?php bp_field_css_class( 'editfield' ); ?>">
+			<div class="academic-interests editable">
 				<h4>Academic Interests</h4>
 				<?php levitin_edit_profile_field( 'Academic Interests' ) ?>
 			</div>
@@ -71,19 +71,19 @@ if ( bp_has_profile( 'profile_group_id=' . bp_get_current_profile_group_id() ) )
 		</div>
 
 		<div class="right">
-			<div class="about">
+			<div class="about editable">
 				<h4>About</h4>
 				<?php levitin_edit_profile_field( 'About' ) ?>
 			</div>
-			<div class="education">
+			<div class="education editable">
 				<h4>Education</h4>
 				<?php levitin_edit_profile_field( 'Education' ) ?>
 			</div>
-			<div class="publications">
+			<div class="publications editable">
 				<h4>Publications</h4>
 				<?php levitin_edit_profile_field( 'Publications' ) ?>
 			</div>
-			<div class="projects">
+			<div class="projects editable">
 				<h4>Projects</h4>
 				<?php levitin_edit_profile_field( 'Projects' ) ?>
 			</div>
@@ -117,11 +117,11 @@ if ( bp_has_profile( 'profile_group_id=' . bp_get_current_profile_group_id() ) )
 					<p><?php _e( 'Sorry, there were no deposits found.', 'buddypress' ); ?></p>
 				<?php endif; ?>
 			</div>
-			<div class="upcoming-talks-and-conferences">
+			<div class="upcoming-talks-and-conferences editable">
 				<h4>Upcoming Talks and Conferences</h4>
 				<?php levitin_edit_profile_field( 'Upcoming Talks and Conferences' ) ?>
 			</div>
-			<div class="memberships">
+			<div class="memberships editable">
 				<h4>Memberships</h4>
 				<?php levitin_edit_profile_field( 'Memberships' ) ?>
 			</div>

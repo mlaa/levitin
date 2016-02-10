@@ -74,4 +74,36 @@
 	// Load Events
 	$( document ).ready( UTIL.loadEvents );
 
+	// profile editing
+	$( document ).ready( function() {
+		$( '#profile-edit-form .editable' ).each( function() {
+			var div = $( this );
+
+			// add visibility controls
+			div.append( '<a href="#" class="visibility">hide</a>' );
+
+			// bind visibility controls
+			div.find( '.visibility' ).click( function() {
+				var a = $( this );
+
+				if ( a.html() === 'hide' ) {
+					a.html( 'show' );
+					div.addClass( 'collapsed' );
+					div.find( '.adminsonly input' ).attr( 'checked', true );
+					div.find( '.public input' ).attr( 'checked', false );
+				} else {
+					a.html( 'hide' );
+					div.removeClass( 'collapsed' );
+					div.find( '.adminsonly input' ).attr( 'checked', false );
+					div.find( '.public input' ).attr( 'checked', true );
+				}
+
+				return false;
+			} );
+
+			if ( div.find( '.adminsonly input' ).is( ':checked' ) ) {
+				div.find( '.visibility' ).triggerHandler( 'click' );
+			}
+		} );
+	} );
 } )( jQuery ); // Fully reference jQuery after this point.
