@@ -23,7 +23,7 @@ if ( bp_has_profile( 'profile_group_id=' . bp_get_current_profile_group_id() ) )
 		<div class="left">
 			<div class="academic-interests editable">
 				<h4>Academic Interests</h4>
-				<?php $levitin_mla_academic_interests->edit_user_mla_academic_interests_section(); ?>
+				<?php $levitin_mla_academic_interests->levitin_edit_user_mla_academic_interests_section(); ?>
 			</div>
 			<div class="recent-commons-activity">
 				<h4>Recent Commons Activity</h4>

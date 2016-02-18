@@ -1,12 +1,14 @@
 <?php
 
+global $levitin_mla_academic_interests;
+
 /** This action is documented in bp-templates/bp-legacy/buddypress/members/single/profile/profile-wp.php */
 do_action( 'bp_before_profile_loop_content' ); ?>
 
 <div class="left">
 	<div class="academic-interests">
 		<h4>Academic Interests</h4>
-		<?php bp_member_profile_data( 'field=Academic Interests' ) ?>
+		<?php $levitin_mla_academic_interests->view_user_mla_academic_interests_section(); ?>
 	</div>
 	<div class="recent-commons-activity">
 		<h4>Recent Commons Activity</h4>

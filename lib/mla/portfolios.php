@@ -121,11 +121,15 @@ function levitin_edit_profile_field( $field_name ) {
 // TODO should this live in its own plugin?
 class Levitin_Mla_Academic_Interests extends Mla_Academic_Interests {
 	/**
-	 * frontend version of edit_user_mla_academic_interests_section() from Mla_Academic_Interests plugin
-	 *
-	 * @param object $user The user object currently being edited.
+	 * TODO cleanest way to do this?
+	 * we don't need to add all the hooks twice, so do nothing here and don't call the parent constructor
 	 */
-	public function edit_user_mla_academic_interests_section( $user ) {
+	public function __construct() { }
+
+	/**
+	 * frontend version of edit_user_mla_academic_interests_section() from Mla_Academic_Interests plugin
+	 */
+	public function levitin_edit_user_mla_academic_interests_section() {
 
 		$tax = get_taxonomy( 'mla_academic_interests' );
 
@@ -137,7 +141,7 @@ class Levitin_Mla_Academic_Interests extends Mla_Academic_Interests {
 		$html = '<span class="description">Enter interests from the existing list, or add new interests if needed.</span><br />';
 		$html .= '<select name="academic-interests[]" class="js-basic-multiple-tags interests" multiple="multiple" data-placeholder="Enter interests.">';
 		$interest_list = $this->mla_academic_interests_list();
-		$input_interest_list = wp_get_object_terms( $user->ID, 'mla_academic_interests', array( 'fields' => 'names' ) );
+		$input_interest_list = wp_get_object_terms( bp_displayed_user_id(), 'mla_academic_interests', array( 'fields' => 'names' ) );
 		foreach ( $interest_list as $interest_key => $interest_value ) {
 			$html .= sprintf('			<option class="level-1" %1$s value="%2$s">%3$s</option>' . "\n",
 				( in_array( $interest_key, $input_interest_list ) ) ? 'selected="selected"' : '',
@@ -146,6 +150,23 @@ class Levitin_Mla_Academic_Interests extends Mla_Academic_Interests {
 			);
 		}
 		$html .= '</select>';
+		echo $html;
+	}
+
+	/**
+	 * view linked list of interests for displayed user
+	 */
+	public function view_user_mla_academic_interests_section() {
+		$tax = get_taxonomy( 'mla_academic_interests' );
+
+		$interests = wp_get_object_terms( bp_displayed_user_id(), 'mla_academic_interests', array( 'fields' => 'names' ) );
+
+		$html = '<ul>';
+		foreach ( $interests as $term_name ) {
+			$search_url = add_query_arg( array( 'academic_interests' => urlencode( $term_name ) ), bp_get_members_directory_permalink() );
+			$html .= '<li><a href="' . esc_url( $search_url ) . '" rel="nofollow">' . $term_name . '</a></li>';
+		}
+		$html .= '</ul>';
 		echo $html;
 	}
 }
