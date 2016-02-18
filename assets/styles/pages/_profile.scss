@@ -157,13 +157,34 @@ body.profile {
 	}
 }
 
+// need the value from this to use in js, but no need to display the element
+#public-personal-li {
+	display: none;
+}
+
 #profile-edit-form {
+	.edit-action-bar {
+		background-color: yellow;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		z-index: 1;
+		width: 100%;
+		text-align: center;
+
+		> div {
+			padding: 10px 20px;
+		}
+	}
+
 	.radio,
 	label {
 		display: none;
 	}
 
 	.collapsed {
+		opacity: .5;
+
 		.wp-editor-wrap {
 			display: none;
 		}

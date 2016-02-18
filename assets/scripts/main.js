@@ -105,5 +105,12 @@
 				div.find( '.visibility' ).triggerHandler( 'click' );
 			}
 		} );
+
+		// cancel button to send user back to view mode
+		$( '#profile-edit-form #cancel' ).click( function( e ) {
+			e.preventDefault();
+			window.location = $( '#public' ).attr( 'href' );
+		} );
 	} );
+
 } )( jQuery ); // Fully reference jQuery after this point.

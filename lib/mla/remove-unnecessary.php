@@ -126,6 +126,6 @@ foreach ( array( 'edit', 'change-avatar' ) as $a_id ) {
 }
 
 // disable some options nav items
-foreach ( array( 'public', 'change-cover-image' ) as $a_id ) {
+foreach ( array( 'change-cover-image' ) as $a_id ) {
 	add_filter( 'bp_get_options_nav_' . $a_id, '__return_false' );
 }

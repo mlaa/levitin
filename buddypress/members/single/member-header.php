@@ -131,8 +131,3 @@ do_action( 'bp_before_member_header' ); ?>
  * @since BuddyPress (1.2.0)
  */
 do_action( 'bp_after_member_header' ); ?>
-
-<?php
-
-/** This action is documented in bp-templates/bp-legacy/buddypress/activity/index.php */
-do_action( 'template_notices' ); ?>
