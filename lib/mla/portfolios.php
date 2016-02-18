@@ -116,3 +116,38 @@ function levitin_edit_profile_field( $field_name ) {
 		break; // once we output the field we want, no need to continue looping
 	}
 }
+
+
+// TODO should this live in its own plugin?
+class Levitin_Mla_Academic_Interests extends Mla_Academic_Interests {
+	/**
+	 * frontend version of edit_user_mla_academic_interests_section() from Mla_Academic_Interests plugin
+	 *
+	 * @param object $user The user object currently being edited.
+	 */
+	public function edit_user_mla_academic_interests_section( $user ) {
+
+		$tax = get_taxonomy( 'mla_academic_interests' );
+
+		/* Make sure the user can assign terms of the mla_academic_interests taxonomy before proceeding. */
+		if ( ! current_user_can( $tax->cap->assign_terms ) ) {
+			return;
+		}
+
+		$html = '<span class="description">Enter interests from the existing list, or add new interests if needed.</span><br />';
+		$html .= '<select name="academic-interests[]" class="js-basic-multiple-tags interests" multiple="multiple" data-placeholder="Enter interests.">';
+		$interest_list = $this->mla_academic_interests_list();
+		$input_interest_list = wp_get_object_terms( $user->ID, 'mla_academic_interests', array( 'fields' => 'names' ) );
+		foreach ( $interest_list as $interest_key => $interest_value ) {
+			$html .= sprintf('			<option class="level-1" %1$s value="%2$s">%3$s</option>' . "\n",
+				( in_array( $interest_key, $input_interest_list ) ) ? 'selected="selected"' : '',
+				$interest_key,
+				$interest_value
+			);
+		}
+		$html .= '</select>';
+		echo $html;
+	}
+}
+
+$levitin_mla_academic_interests = new Levitin_Mla_Academic_Interests;
