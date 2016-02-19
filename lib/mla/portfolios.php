@@ -133,11 +133,6 @@ class Levitin_Mla_Academic_Interests extends Mla_Academic_Interests {
 
 		$tax = get_taxonomy( 'mla_academic_interests' );
 
-		/* Make sure the user can assign terms of the mla_academic_interests taxonomy before proceeding. */
-		if ( ! current_user_can( $tax->cap->assign_terms ) ) {
-			return;
-		}
-
 		$html = '<span class="description">Enter interests from the existing list, or add new interests if needed.</span><br />';
 		$html .= '<select name="academic-interests[]" class="js-basic-multiple-tags interests" multiple="multiple" data-placeholder="Enter interests.">';
 		$interest_list = $this->mla_academic_interests_list();
