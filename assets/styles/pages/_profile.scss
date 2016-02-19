@@ -38,11 +38,11 @@ body.profile {
 
 		// for edit view
 		form {
-			display: flex;
-		}
+			width: 100%;
 
-		.visibility-settings {
-			//display: none;
+			.flex-wrap {
+				display: flex;
+			}
 		}
 
 		.left {
