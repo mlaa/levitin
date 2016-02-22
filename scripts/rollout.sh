@@ -46,13 +46,6 @@ wp widget delete text-13
 # Delete "FAQ" widget (add link to "Get Help" widget instead)
 wp widget delete rss-3
 
-# Activate this theme.
-SERVER=$1
-URL="--url=$SERVER"
-#wp theme activate levitin $URL
-#wp theme delete cbox-theme # this shouldn't be necessary once cbox-mla is fixed to activate correctly by itself
-wp theme activate levitin $URL
-
 # Add profile area to dashboard sidebar
 wp widget add mla_bp_profile_area sidebar-primary
 
@@ -147,3 +140,11 @@ gulp
 
 # back to where we got started
 cd $start_dir
+
+
+# Activate this theme.
+SERVER=$1
+URL="--url=$SERVER"
+#wp theme activate levitin $URL
+#wp theme delete cbox-theme # this shouldn't be necessary once cbox-mla is fixed to activate correctly by itself
+wp theme activate levitin $URL
