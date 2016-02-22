@@ -115,6 +115,8 @@ wp --path="$wp_dir" plugin activate --network bp-block-member
 wp --path="$wp_dir" plugin activate --network buddypress-followers
 wp --path="$wp_dir" plugin activate --network mla-academic-interests
 
+wp --path="$wp_dir" plugin deactivate --network cac-advanced-profiles
+
 # --------- Styles ------------
 
 # including files instead of submodule
