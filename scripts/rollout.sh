@@ -113,6 +113,7 @@ wp plugin activate buddypress-profile-progression
 
 wp plugin activate --network bp-block-member
 wp plugin activate --network buddypress-followers
+wp plugin activate --network mla-academic-interests
 
 # --------- Styles ------------
 
