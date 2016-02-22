@@ -37,51 +37,51 @@ cd $wp_dir
 # Footer Widgets: 1. text-6: "Contact Us"; 3. text-10: "Get Help"
 for widget in rss-5 text-15 links-2 text-6 text-10 rss-6 links-3
 do
-	wp widget move $widget --sidebar-id=wp_inactive_widgets
+	wp --path="$wp_dir" widget move $widget --sidebar-id=wp_inactive_widgets
 done
 
 # Delete "More Resources" widget
-wp widget delete text-13
+wp --path="$wp_dir" widget delete text-13
 
 # Delete "FAQ" widget (add link to "Get Help" widget instead)
-wp widget delete rss-3
+wp --path="$wp_dir" widget delete rss-3
 
 # Add profile area to dashboard sidebar
-wp widget add mla_bp_profile_area sidebar-primary
+wp --path="$wp_dir" widget add mla_bp_profile_area sidebar-primary
 
 # Add "News from the MLA" to logged-out dashboard main area.
-wp widget move rss-5 --sidebar-id=mla-dashboard-main
+wp --path="$wp_dir" widget move rss-5 --sidebar-id=mla-dashboard-main
 
 # Add "MLA Resources" to the logged-out sidebar.
-wp widget move links-2 --sidebar-id=mla-dashboard-logged-out
+wp --path="$wp_dir" widget move links-2 --sidebar-id=mla-dashboard-logged-out
 
 # Populate footer with footer widgets
 for widget in text-6 rss-3 text-10
 do
-	wp widget move $widget --sidebar-id=sidebar-footer
+	wp --path="$wp_dir" widget move $widget --sidebar-id=sidebar-footer
 done
 
 # Move "News from the MLA" (copy), "MLA Sites," and "Member Resources" to the tabbed sidebar,
 # visible to logged-in users only.
 for widget in links-3 text-15 rss-6
 do
-	wp widget move $widget --sidebar-id=mla-dashboard-tabbed-sidebar
+	wp --path="$wp_dir" widget move $widget --sidebar-id=mla-dashboard-tabbed-sidebar
 done
 
 # Add CBOX menu to main nav area
-wp menu location assign inside-header-navigation primary_navigation
+wp --path="$wp_dir" menu location assign inside-header-navigation primary_navigation
 
 # Get ID of "Activity" menu item
-ACTIVITY_ID=`wp menu item list inside-header-navigation | grep Activity | cut -f1`
+ACTIVITY_ID=`wp --path="$wp_dir" menu item list inside-header-navigation | grep Activity | cut -f1`
 
 # Remove "Activity" since we'll be effectively replacing it with the dashboard
-wp menu item delete $ACTIVITY_ID
+wp --path="$wp_dir" menu item delete $ACTIVITY_ID
 
 # Make a new page called "Dashboard"
-DASHBOARD_ID=`wp post create --post_type=page --post_title=Dashboard --post_status=publish --porcelain`
+DASHBOARD_ID=`wp --path="$wp_dir" post create --post_type=page --post_title=Dashboard --post_status=publish --porcelain`
 
 # Make a menu item that corresponds with our newly-created page
-wp menu item add-post inside-header-navigation $DASHBOARD_ID --title=Dashboard --position=1
+wp --path="$wp_dir" menu item add-post inside-header-navigation $DASHBOARD_ID --title=Dashboard --position=1
 
 # --------- Plugins ----------
 
@@ -89,11 +89,11 @@ wp menu item add-post inside-header-navigation $DASHBOARD_ID --title=Dashboard -
 # this is now already present in commons on the feature/new-cbox-mla branch
 #cd $plugins_dir
 #git clone https://github.com/mlaa/buddypress-global-search.git
-wp plugin activate buddypress-global-search
+wp --path="$wp_dir" plugin activate buddypress-global-search
 
 # Get and activate the Blog Avatar plugin
 #git clone https://github.com/buddydev/blog-avatar
-#wp plugin activate --network blog-avatar
+#wp --path="$wp_dir" plugin activate --network blog-avatar
 
 # Download a copy of Buddypress Profile Progression,
 # unzip it, and remove the zip file:
@@ -101,7 +101,7 @@ wp plugin activate buddypress-global-search
 #wget https://downloads.wordpress.org/plugin/buddypress-profile-progression.zip && unzip buddypress-profile-progression.zip && rm buddypress-profile-progression.zip
 
 # Now activate!
-wp plugin activate buddypress-profile-progression
+wp --path="$wp_dir" plugin activate buddypress-profile-progression
 
 # this is now already present in commons on the feature/new-cbox-mla branch
 #cd $plugins_dir/mla-admin-bar
@@ -111,9 +111,9 @@ wp plugin activate buddypress-profile-progression
 #cd $plugins_dir/cbox-auth
 #git checkout -b develop origin/develop || git checkout develop #get the develop version of cbox-auth
 
-wp plugin activate --network bp-block-member
-wp plugin activate --network buddypress-followers
-wp plugin activate --network mla-academic-interests
+wp --path="$wp_dir" plugin activate --network bp-block-member
+wp --path="$wp_dir" plugin activate --network buddypress-followers
+wp --path="$wp_dir" plugin activate --network mla-academic-interests
 
 # --------- Styles ------------
 
@@ -146,6 +146,6 @@ cd $start_dir
 # Activate this theme.
 SERVER=$1
 URL="--url=$SERVER"
-#wp theme activate levitin $URL
-#wp theme delete cbox-theme # this shouldn't be necessary once cbox-mla is fixed to activate correctly by itself
-wp theme activate levitin $URL
+#wp --path="$wp_dir" theme activate levitin $URL
+#wp --path="$wp_dir" theme delete cbox-theme # this shouldn't be necessary once cbox-mla is fixed to activate correctly by itself
+wp --path="$wp_dir" theme activate levitin $URL
