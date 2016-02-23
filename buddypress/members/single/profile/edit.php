@@ -11,6 +11,14 @@ if ( bp_has_profile( 'profile_group_id=' . bp_get_current_profile_group_id() ) )
 		<div class="flex-wrap">
 
 			<div class="left">
+				<div class="header-fields">
+					<?php foreach ( array( 'Twitter', 'Facebook', 'LinkedIn', 'ORCID' ) as $field ): ?>
+						<div class="field-<?php echo str_replace( ' ', '-', strtolower( strip_tags( $field ) ) ) ?>">
+							<?php levitin_edit_profile_field( $field ) ?>
+						</div>
+					<?php endforeach ?>
+				</div>
+
 				<div class="academic-interests editable">
 					<h4>Academic Interests</h4>
 					<?php $levitin_mla_academic_interests->levitin_edit_user_mla_academic_interests_section(); ?>
@@ -122,6 +130,7 @@ if ( bp_has_profile( 'profile_group_id=' . bp_get_current_profile_group_id() ) )
 				/** This action is documented in bp-templates/bp-legacy/buddypress/members/single/profile/profile-wp.php */
 				do_action( 'bp_after_profile_field_content' ); ?>
 
+				<?php // TODO this is inaccurate, is that a problem? ?>
 				<input type="hidden" name="field_ids" id="field_ids" value="<?php bp_the_profile_field_ids(); ?>" />
 
 				<?php wp_nonce_field( 'bp_xprofile_edit' ); ?>

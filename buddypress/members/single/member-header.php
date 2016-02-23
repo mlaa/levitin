@@ -50,11 +50,13 @@ do_action( 'bp_before_member_header' ); ?>
 		<div class="username">
 			<?php echo "@" . bp_get_displayed_user_username() ?>
 		</div>
-		<?php if ( ! empty( bp_get_member_profile_data( 'field=Site' ) ) ): ?>
-		<div class="site">
-			<?php bp_member_profile_data( 'field=Site' ) ?>
-		</div>
-		<?php endif ?>
+		<?php foreach ( array( 'Site', 'Twitter', 'Facebook', 'LinkedIn', 'ORCID' ) as $field ): ?>
+			<?php if ( ! empty( bp_get_member_profile_data( "field=$field" ) ) ): ?>
+			<div class="field-<?php echo str_replace( ' ', '-', strtolower( strip_tags( $field ) ) ) ?>">
+				<?php bp_member_profile_data( "field=$field" ) ?>
+			</div>
+			<?php endif ?>
+		<?php endforeach ?>
 	</div><!-- #item-main -->
 
 	<?php

@@ -111,6 +111,37 @@
 			e.preventDefault();
 			window.location = $( '#public' ).attr( 'href' );
 		} );
+
+		// header fields (hidden in main form, duplicated to be accessible by user in the header)
+		var social_field_change_handler = function ( e ) {
+			var input = $( this ).find( 'input' );
+			var hidden_field = $( '#profile-edit-form input[name=' + input.attr( 'name' ) + ']' );
+			hidden_field.val( input.val() );
+		};
+		var fields = $( '#profile-edit-form' ).find( '.field-twitter, .field-facebook, .field-linkedin, .field-orcid' );
+		$( fields ).each( function () {
+			var clone = $( this ).clone();
+
+			// only keep label & input, no permissions radios (or anything else)
+			clone
+				.find( ':not( label[for^=field], input[id^=field] )' )
+				.remove();
+
+			// remove id to prevent conflict
+			clone
+				.find( 'input' )
+				.removeAttr( 'id' );
+
+			// remove corresponding view-only div
+			$( '#item-header-content #item-main' )
+				.find( '.' + clone.attr( 'class' ) )
+				.remove();
+
+			// move to header
+			clone
+				.appendTo( '#item-header-content #item-main' )
+				.change( social_field_change_handler );
+		} );
 	} );
 
 } )( jQuery ); // Fully reference jQuery after this point.
