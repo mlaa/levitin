@@ -124,7 +124,9 @@ if ( class_exists( 'Mla_Academic_Interests' ) ) {
 		 * TODO cleanest way to do this?
 		 * we don't need to add all the hooks twice, so do nothing here and don't call the parent constructor
 		 */
-		public function __construct() { }
+		public function __construct() {
+			add_action( 'xprofile_updated_profile', array( $this, 'levitin_save_user_mla_academic_interests_terms' ) );
+		}
 
 		/**
 		 * frontend version of edit_user_mla_academic_interests_section() from Mla_Academic_Interests plugin
@@ -163,6 +165,41 @@ if ( class_exists( 'Mla_Academic_Interests' ) ) {
 			}
 			$html .= '</ul>';
 			echo $html;
+		}
+
+		/**
+		 * Saves the terms selected on the edit user/profile page on the frontend
+		 *
+		 * @param int $user_id The ID of the user to save the terms for.
+		 */
+		public function levitin_save_user_mla_academic_interests_terms( $user_id ) {
+			$tax = get_taxonomy( 'mla_academic_interests' );
+
+			// If array add any new keywords.
+			if ( is_array( $_POST['academic-interests'] ) ) {
+				foreach ( $_POST['academic-interests'] as $term_id ) {
+					$term_key = term_exists( $term_id, 'mla_academic_interests' );
+					if ( empty( $term_key ) ) {
+						$term_key = wp_insert_term( sanitize_text_field( $term_id ), 'mla_academic_interests' );
+					}
+					if ( ! is_wp_error( $term_key ) ) {
+						$term_ids[] = intval( $term_key['term_id'] );
+					} else {
+						error_log( '*****CAC Academic Interests Error - bad tag*****' . var_export( $term_key, true ) );
+					}
+				}
+			}
+
+			// Set object terms for tags.
+			$term_taxonomy_ids = wp_set_object_terms( $user_id, $term_ids, 'mla_academic_interests' );
+			clean_object_term_cache( $user_id, 'mla_academic_interests' );
+
+			// Set user meta for theme query.
+			delete_user_meta( $user_id, 'academic_interests' );
+			foreach ( $term_taxonomy_ids as $term_taxonomy_id ) {
+				add_user_meta( $user_id, 'academic_interests', $term_taxonomy_id, $unique = false );
+			}
+
 		}
 	}
 

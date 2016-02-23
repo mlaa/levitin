@@ -134,7 +134,7 @@ if ( bp_has_profile( 'profile_group_id=' . bp_get_current_profile_group_id() ) )
 			<?php do_action( 'template_notices' ); ?>
 
 			<div class="generic-button">
-				<input type="submit" value="Cancel" id="cancel">
+				<input type="submit" value="Back to View Mode" id="cancel">
 				<input type="submit" name="profile-group-edit-submit" id="profile-group-edit-submit" value="<?php esc_attr_e( 'Save Changes', 'buddypress' ); ?> " />
 			</div>
 		</div>
