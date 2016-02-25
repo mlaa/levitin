@@ -162,6 +162,10 @@ body.profile {
 	display: none;
 }
 
+.changed {
+	background-color: yellow !important;
+}
+
 #profile-edit-form {
 	.edit-action-bar {
 		background-color: yellow;
