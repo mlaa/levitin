@@ -205,3 +205,22 @@ if ( class_exists( 'Mla_Academic_Interests' ) ) {
 
 	$levitin_mla_academic_interests = new Levitin_Mla_Academic_Interests;
 }
+
+// adapted from https://wordpress.org/plugins/client-proof-visual-editor
+function levitin_visual_editor( $mceInit ) {
+	// What goes into the 'formatselect' list
+	$mceInit['block_formats'] = 'Header 2=h2;Header 3=h3;Header 4=h4;Paragraph=p;Code=code';
+
+	// What goes into the toolbars. Add 'wp_adv' to get the Toolbar toggle button back
+	$mceInit['toolbar1'] = 'bold,italic,strikethrough,formatselect,bullist,numlist,blockquote,link,unlink,hr,wp_more,fullscreen';
+	$mceInit['toolbar2'] = '';
+	$mceInit['toolbar3'] = '';
+	$mceInit['toolbar4'] = '';
+
+	// Clear most formatting when pasting text directly in the editor
+	$mceInit['paste_as_text'] = 'true';
+
+	return $mceInit;
+}
+
+add_filter( 'teeny_mce_before_init', 'levitin_visual_editor' );
