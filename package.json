@@ -1,15 +1,15 @@
 {
-	"name": "cbox-levitin",
+	"name": "levitin",
 	"version": "0.0.1",
 	"author": "Jonathan Reeve <jon.reeve@gmail.com>",
-	"homepage": "https://github.com/mlaa/cbox-mla",
+	"homepage": "https://github.com/mlaa/levitin",
 	"private": true,
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/mlaa/cbox-mla.git"
+		"url": "git://github.com/mlaa/levitin.git"
 	},
 	"bugs": {
-		"url": "https://github.com/mlaa/cbox-mla/issues"
+		"url": "https://github.com/mlaa/levitin/issues"
 	},
 	"licenses": [
 		{
@@ -18,14 +18,16 @@
 		}
 	],
 	"scripts": {
-		"build": "bower install && gulp",
-		"jshint": "gulp jshint"
+		"build": "gulp",
+		"jshint": "gulp jshint",
+		"postinstall": "bower install"
 	},
 	"engines": {
 		"node": ">= 0.12.0",
 		"npm": ">=2.1.5"
 	},
 	"devDependencies": {
+		"bower": "",
 		"asset-builder": "^1.0.2",
 		"browser-sync": "^2.7.1",
 		"del": "^1.1.1",
