@@ -71,3 +71,47 @@
 .widget_links {
   // Member Resources
 }
+
+.home-page {
+  main {
+    display: flex;
+    margin: 40px;
+  }
+
+  .recent-commons-activity {
+    flex: 1;
+
+    div {
+      margin: 10px 0;
+    }
+  }
+
+  .widgets {
+    flex: 2;
+  }
+
+  .columns {
+    display: flex;
+  }
+
+  .dashboard-right,
+  .dashboard-left {
+    flex: 1;
+  }
+
+  .dashboard-top,
+  .dashboard-right,
+  .dashboard-left {
+    li {
+      display: block;
+      padding: 20px;
+      margin: 20px 0;
+      border: 1px solid black;
+      min-height: 200px;
+    }
+
+    h2 {
+      font-size: 1em;
+    }
+  }
+}

@@ -3,37 +3,47 @@
 // Functions for the dashboard
 
 // Make a new sidebar for the main dashboard area. This will probably hold
-// an RSS feed with MLA news items. 
+// an RSS feed with MLA news items.
 function mla_dashboard_main(){
 	register_sidebar( array(
-		'id'          => 'mla-dashboard-main',
-		'name'        => 'Dashboard Main Area',
-		'description' => 'This is the left area of the main dashboard, visible only to logged-out users.',
+		'id'          => 'mla-dashboard-top',
+		'name'        => 'Dashboard Top Area',
+		'description' => 'This is the top area of the main dashboard, spanning the width of both columns.',
+	));
+	register_sidebar( array(
+		'id'          => 'mla-dashboard-left',
+		'name'        => 'Dashboard Left Column',
+		'description' => 'This is the left area of the main dashboard.',
+	));
+	register_sidebar( array(
+		'id'          => 'mla-dashboard-right',
+		'name'        => 'Dashboard Right Column',
+		'description' => 'This is the right area of the main dashboard.',
 	));
 }
 add_action( 'widgets_init', 'mla_dashboard_main', 9 );
 
 // Make a new sidebar for tabbed widgets. This will hold
 // "From the MLA," -> "News," "Sites," and "Resources."
-function mla_dashboard_sidebars(){
-	register_sidebar( array(
-		'id'          => 'mla-dashboard-tabbed-sidebar',
-		'name'        => 'Dashboard Tabbed Sidebar',
-		'description' => 'This is the "From the MLA" sidebar, containing MLA news, sites, and resources.',
-	));
-}
-add_action( 'widgets_init', 'mla_dashboard_sidebars', 10 );
+//function mla_dashboard_sidebars(){
+//	register_sidebar( array(
+//		'id'          => 'mla-dashboard-tabbed-sidebar',
+//		'name'        => 'Dashboard Tabbed Sidebar',
+//		'description' => 'This is the "From the MLA" sidebar, containing MLA news, sites, and resources.',
+//	));
+//}
+//add_action( 'widgets_init', 'mla_dashboard_sidebars', 10 );
 
 // Make a new sidebar for logged-out stuff. This will hold
 // "MLA Member Resources."
-function mla_dashboard_logged_out(){
-	register_sidebar( array(
-		'id'          => 'mla-dashboard-logged-out',
-		'name'        => 'Dashboard Sidebar for Logged-Out Users',
-		'description' => 'This sidebar was originally meant to contain "MLA Member Resources."',
-	));
-}
-add_action( 'widgets_init', 'mla_dashboard_logged_out', 11 );
+//function mla_dashboard_logged_out(){
+//	register_sidebar( array(
+//		'id'          => 'mla-dashboard-logged-out',
+//		'name'        => 'Dashboard Sidebar for Logged-Out Users',
+//		'description' => 'This sidebar was originally meant to contain "MLA Member Resources."',
+//	));
+//}
+//add_action( 'widgets_init', 'mla_dashboard_logged_out', 11 );
 /* A widget for displaying the logged-in user's avatar, name, affiliation,
  * and a few useful links to that user's pages.
  */
@@ -44,7 +54,7 @@ class MLA_BP_Profile_Area extends WP_Widget {
 
 	function widget($args, $instance) {
 
-		if ( is_user_logged_in() ) { 
+		if ( is_user_logged_in() ) {
 
 			global $bp;
 
@@ -89,7 +99,7 @@ class MLA_BP_Profile_Area extends WP_Widget {
 			</div>
 
 			<?php echo $after_widget; ?>
-	<?php } 
+	<?php }
 	}
 
 	function update( $new_instance, $old_instance ) {
@@ -108,11 +118,11 @@ class MLA_BP_Profile_Area extends WP_Widget {
 /**
  * Register the above widget
  */
-function mla_register_profile_widget()
-{
-	return register_widget( "MLA_BP_Profile_Area" );
-}
-add_action( 'widgets_init', 'mla_register_profile_widget' );
+//function mla_register_profile_widget()
+//{
+//	return register_widget( "MLA_BP_Profile_Area" );
+//}
+//add_action( 'widgets_init', 'mla_register_profile_widget' );
 
 /**
  * Custom scope to allow mixing in official MLA activity items into the newsfeed.

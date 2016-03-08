@@ -15,54 +15,8 @@ then
 	exit 1
 fi
 
-widgets() {
-	for i in deposits-directory-sidebar deposits-search-sidebar wp_inactive_widgets
-	do
-		$wp widget list $i
-	done
-	return
-
-	#$wp widget list
-
-	# Temporarily move widgets to "wp_inactive_widgets" area so we can save their content while we change the theme.
-	# Dashboard Widgets: 1. rss-5: "News from the MLA"; 2. text-15: "MLA Sites"; 3. links-2: "Member Resources"
-	# 4. rss-6: "New from the MLA" (copy); 5. links-3: "Member Resources" (copy)
-	# Footer Widgets: 1. text-6: "Contact Us"; 3. text-10: "Get Help"
-	for widget in rss-5 text-15 links-2 text-6 text-10 rss-6 links-3
-	do
-		$wp widget move $widget --sidebar-id=wp_inactive_widgets
-	done
-
-	$wp widget delete text-13 # Delete "More Resources" widget
-	$wp widget delete rss-3 # Delete "FAQ" widget (add link to "Get Help" widget instead)
-
-	$wp widget add mla_bp_profile_area sidebar-primary # Add profile area to dashboard sidebar
-
-	$wp widget move rss-5 --sidebar-id=mla-dashboard-main # Add "News from the MLA" to logged-out dashboard main area.
-	$wp widget move links-2 --sidebar-id=mla-dashboard-logged-out # Add "MLA Resources" to the logged-out sidebar.
-
-	# Populate footer with footer widgets
-	for widget in text-6 rss-3 text-10
-	do
-		$wp widget move $widget --sidebar-id=sidebar-footer
-	done
-
-	# Move "News from the MLA" (copy), "MLA Sites," and "Member Resources" to the tabbed sidebar,
-	# visible to logged-in users only.
-	for widget in links-3 text-15 rss-6
-	do
-		$wp widget move $widget --sidebar-id=mla-dashboard-tabbed-sidebar
-	done
-}
-
-npm install
-gulp
-
-# TODO add/update xprofile fields
+# TODO add/update xprofile fields # https://github.com/boonebgorges/wp-cli-buddypress
 # TODO migrate xprofile data
-
-#widgets
-#exit
 
 activity_id=$($wp menu item list inside-header-navigation | grep Activity | cut -f1)
 [[ -n "$activity_id" ]] && $wp menu item delete $activity_id
@@ -75,8 +29,30 @@ $wp plugin activate --network bp-block-member
 $wp plugin activate --network buddypress-followers
 $wp plugin activate --network mla-academic-interests
 
+npm install
+gulp
+
 $wp theme activate levitin
+
+$wp widget delete text-13 links-2 rss-5
+
+# theme must be active for sidebars to have been registered
+# all text widgets for now due to open bug adding rss widgets: https://github.com/wp-cli/wp-cli/issues/1222
+$wp widget add text mla-dashboard-top --title='What is MLA Commons?'
+
+$wp widget add text mla-dashboard-left --title='MLA Blogs'
+$wp widget add text mla-dashboard-left --title='MLA News'
+$wp widget add text mla-dashboard-left --title='Featured MLA Publication'
+$wp widget add text mla-dashboard-left --title='Advocacy Site'
+
+$wp widget add text mla-dashboard-right --title='Commons Member Twitter Feed' --text='Enim corporis est et tempore numquam. Id id quia iste in voluptatibus porro cupiditate. Et alias in est rerum officiis fuga. Veniam officia quia et error sed sed est ipsum. Animi veritatis inventore saepe in hic sunt.
+Sint consequatur qui corporis non impedit recusandae quasi explicabo. Sint natus est sapiente. Quia aut repudiandae modi error iusto perspiciatis aut.
+Et impedit nisi nostrum. Dolorum voluptas unde odio quia ipsum. Architecto et nam dolorem repellendus omnis nulla. Vitae earum quisquam dolorum. Totam iusto mollitia ut. Quidem qui velit odit numquam.
+Inventore culpa tempore expedita omnis est vel quis aut. Et voluptate perspiciatis eaque architecto qui in. Et soluta et et. Et autem consectetur nihil rerum provident. Porro accusamus quia distinctio. Quis vitae facere ut porro eum ex minus occaecati.'
+$wp widget add text mla-dashboard-right --title='Featured Member Site'
+$wp widget add text mla-dashboard-right --title='Featured CORE Collection'
 
 $wp menu location assign inside-header-navigation primary_navigation # theme must be activated in order for wordpress to find primary_navigation
 
-rm $pre_php
+# doesn't hurt anything to leave this, and it comes in handy for ad-hoc uses of wp-cli
+#rm $pre_php
