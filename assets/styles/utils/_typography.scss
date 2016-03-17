@@ -1,7 +1,7 @@
 // Typography
 
-$header-font-family: 'Roboto Slab', serif;
 $text-font-family: proxima-nova, Helvetica, Arial, sans-serif;
+$header-font-family: $text-font-family;
 
 $header-bold: 700;
 $text-bold: 600;

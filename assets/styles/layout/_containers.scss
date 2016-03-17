@@ -72,3 +72,11 @@
 #item-body > #bbpress-forums {
   @include content;
 }
+
+.page-header {
+  background-color: $nav-primary-background-color;
+
+  h1 {
+    margin: 0;
+  }
+}

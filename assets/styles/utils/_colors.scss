@@ -7,7 +7,7 @@ $mla-blue: #07d;
 
 // Page colors
 $page-background-color: #fafafa;
-$page-text-color: #000;
+$page-text-color: $black;
 $page-link-color: $mla-blue;
 $page-link-hover-color: $mla-blue;
 
@@ -15,7 +15,7 @@ $level-minus-one-color: darken($page-background-color, 2%);
 $level-minus-two-color: #eee;
 
 // Tile colors
-$tile-background-color: #fff;
+$tile-background-color: $white;
 $tile-border-color: #eee;
 
 // Recessed colors
@@ -40,11 +40,11 @@ $table-border-color: #eee;
 $table-head-border-color: #ddd;
 $table-hover-background-color: #fafafa;
 
-$nav-primary-background-color: #3a3a50;
-$nav-secondary-background-color: #345568;
-$nav-tertiary-background-color: #20343f;
-$nav-text-color: #fff;
+$nav-primary-background-color: $white;
+$nav-secondary-background-color: $nav-primary-background-color;
+$nav-tertiary-background-color: $nav-primary-background-color;
+$nav-text-color: $black;
 
 // Footer Colors
 $footer-bg-color: $nav-primary-background-color;
-$footer-text: #fff;
+$footer-text: $black;
