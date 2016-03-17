@@ -40,6 +40,6 @@
 }
 
 // There was a hard-coded icon here. This disables that icon.
-#nav-documents-groups-li {
+li#nav-documents-groups-li, li#nav-documents-personal-li {
   background: transparent;
 }
