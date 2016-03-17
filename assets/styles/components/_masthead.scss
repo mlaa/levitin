@@ -14,10 +14,12 @@
   }
 
   nav {
-    @include tabs;
     flex: 1;
     font-family: $header-font-family;
     font-size: $size-m;
   }
 
+  nav.primary {
+    @include tabs;
+  }
 }

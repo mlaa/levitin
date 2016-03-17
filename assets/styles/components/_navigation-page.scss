@@ -2,7 +2,7 @@
 #item-nav,
 .item-list-tabs {
 
-  @include tabs;
+  @include tabs-no-border;
   background-color: $nav-secondary-background-color;
   font-family: $header-font-family;
   font-size: $size-vs;
