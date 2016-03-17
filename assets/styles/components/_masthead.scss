@@ -2,25 +2,22 @@
 #main-site-header {
 
   background-color: $nav-primary-background-color;
-  display: block;
-  padding: 1em 1em 0;
-  text-align: center;
+  display: flex;
+  line-height: 1em;
 
   .brand {
-    @extend h1;
-    color: $white;
-    font-size: $size-xl;
-    font-weight: 400;
-    margin: 0.2em 0 0;
-    text-shadow: 1px 1px 1px rgba(100, 100, 100, 0.5);
-    white-space: nowrap;
+    flex: 0;
+    margin: 6px 1em 0; // 6px to center vertically: 1.5 × 4px border on nav tabs
+
+    img {
+    }
   }
 
   nav {
-    @include tabs($color: $white);
+    @include tabs;
+    flex: 1;
     font-family: $header-font-family;
     font-size: $size-m;
-    margin-bottom: 0;
   }
 
 }

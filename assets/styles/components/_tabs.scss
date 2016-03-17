@@ -1,6 +1,6 @@
 // Tabs
 
-@mixin tabs($color: $white) {
+@mixin tabs($color: $black) {
 
   ul {
     margin: 0;
@@ -13,6 +13,7 @@
     list-style: none;
 
     a {
+      border-top: 4px solid transparent;
       border-bottom: 4px solid transparent;
       color: $color;
       display: inline-block;
