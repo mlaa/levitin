@@ -1,165 +1,28 @@
-// This file contains styles for CAC-Advanced-Profiles (CACAP), which we call
-// "Portfolios."
-
-// CACAP CSS is still getting loaded here, so we have to override some things,
-// unfortunately.
-
-// Colors
-$cacap-tooltip-border-color: #666;
-$cacap-tooltip-text-color: #000;
-$cacap-tooltip-hover-background-color: #fafafa;
-$cacap-tooltip-hover-link-color: #333;
-$cacap-widget-background-color: #efefef;
-$cacap-widget-border-color: #eee;
-$cacap-widget-type-color: #333;
-$cacap-widget-plus-color: #333;
-
-#cacap-edit {
-  margin-top: 2em;
-}
-
-.link-to-mla-org {
-  font-size: 1.2em;
-  margin-top: 0.6em;
-}
-
-#cacap-user-widget-new {
-
-  background-color: $cacap-widget-background-color;
-  border-bottom: 2px solid $cacap-widget-border-color;
-  border-top: 2px solid $cacap-widget-border-color;
-  padding: 10px 0;
-  width: 100%;
-
-  #cacap-user-widget-new-content {
-    text-align: center;
-  }
-
-  #cacap-new-widget-types {
-
-    line-height: 1em;
-
-    a {
-      text-decoration: none;
-    }
-
-    li {
-
-      @extend button;
-      border-radius: 5px;
-      cursor: pointer;
-      display: inline-block;
-      height: 90px;
-      line-height: 1.1em;
-      margin-bottom: 10px;
-      margin-right: 10px;
-      padding: 3px;
-      padding-top: 22px;
-      text-align: center;
-      vertical-align: top;
-      width: 100px;
-
-    }
-
-  }
-
-}
-
-.cacap-has-max {
-
-  opacity: 0.4;
-
-  &:hover {
-
-    background-color: $cacap-tooltip-hover-background-color;
-    cursor: default;
-
-    .cacap-has-max-tooltip {
-      display: block;
-    }
-
-    a {
-      color: $cacap-tooltip-hover-link-color;
-      cursor: default;
-    }
-
-  }
-
-}
-
-.cacap-has-max-tooltip {
-  background: $white;
-  border: 1px solid $cacap-tooltip-border-color;
-  color: $cacap-tooltip-text-color;
-  display: none;
-  font-size: 0.9em;
-  height: 1.4em;
-  opacity: 2;
-  position: absolute;
-}
-
-.cacap-widget-type-name {
-  color: $cacap-widget-type-color;
-  display: block;
-  line-height: 1.2em;
-}
-
-.cacap-plus {
-  color: $cacap-widget-plus-color;
-  font-size: 60px;
-}
-
-// Welcome "Bubble" Modal Dialog for CACAP
-
-.remodal-confirm {
-  @extend button;
-  font-size: 14px;
-  padding: 12px;
-}
-
-.remodal-close {
-  // disable X button to clean it up a bit
-  display: none;
-}
-
-// CACAP Hacks
-
-// This is a somewhat unfortunate hack to hide Xprofile fields in CACAP.
-// Removing the template doesn't quite do the trick, since that apparently
-// causes CACAP not to save properly. But look in cac-advanced-profiles/
-// templates/cacap/bp-profile-fields-edit.php and maybe there's a way to remove
-// those entries and still have CACAP save everything properly?
-
-.cacap-bp-profile-fields {
-  display: none;
-}
-
-.flexbox-container {
-  display: -ms-flex;
-  display: -webkit-flex;
-  display: flex;
-}
-
-.flexbox-container > div:first-child {
-  width: 70%;
-  padding: 10px;
-}
-.flexbox-container > div:last-child {
-  padding: 10px;
-}
-
-.flexbox-container > div:first-child {
-  margin-right: 20px;
-}
-
-.bp-widget.profile > div {
-  padding: 5px;
-  margin: 5px 0;
-  border: 1px solid black;
-}
-
-
 body.profile {
+  .flexbox-container {
+    display: -ms-flex;
+    display: -webkit-flex;
+    display: flex;
+  }
+
+  .flexbox-container > div:first-child {
+    width: 70%;
+    padding: 10px;
+  }
+  .flexbox-container > div:last-child {
+    padding: 10px;
+  }
+
+  .flexbox-container > div:first-child {
+    margin-right: 20px;
+  }
+
+  .bp-widget.profile > div {
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid black;
+  }
+
   .page-header {
     display: none;
   }
@@ -316,47 +179,47 @@ body.profile {
       }
     }
   }
-}
 
-// need the value from this to use in js, but no need to display the element
-#public-personal-li {
-  display: none;
-}
-
-.changed {
-  background-color: yellow !important;
-}
-
-#profile-edit-form {
-  .edit-action-bar {
-    background-color: yellow;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    text-align: center;
-
-    > div {
-      padding: 10px 20px;
-    }
-  }
-
-  .js-basic-multiple-tags {
-    width: 100%;
-  }
-
-  .header-fields,
-  .radio,
-  label {
+  // need the value from this to use in js, but no need to display the element
+  #public-personal-li {
     display: none;
   }
 
-  .collapsed {
-    opacity: .5;
+  .changed {
+    background-color: yellow !important;
+  }
 
-    .wp-editor-wrap {
+  #profile-edit-form {
+    .edit-action-bar {
+      background-color: yellow;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      text-align: center;
+
+      > div {
+        padding: 10px 20px;
+      }
+    }
+
+    .js-basic-multiple-tags {
+      width: 100%;
+    }
+
+    .header-fields,
+    .radio,
+    label {
       display: none;
+    }
+
+    .collapsed {
+      opacity: .5;
+
+      .wp-editor-wrap {
+        display: none;
+      }
     }
   }
 }
