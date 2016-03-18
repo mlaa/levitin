@@ -1,5 +1,10 @@
 // Layout containers
 
+body > * > * {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 .container {
   margin: 3em 1em;
 }
