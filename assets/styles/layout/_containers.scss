@@ -1,7 +1,7 @@
 // Layout containers
 
 #main-site-header > div,
-body > .wrap,
+#buddypress,
 footer > div {
   max-width: 1000px;
   margin: 0 auto;
@@ -27,10 +27,19 @@ footer > div {
     min-height: 175px;
 
     .item {
-      margin: 1.5em;
+      margin: 1em auto;
       //min-width: 9em;
     }
 
+    .item-title {
+      margin: 1em;
+      text-align: center;
+    }
+
+    .action {
+      margin: 1em 0;
+      text-align: center;
+    }
   }
 
 }

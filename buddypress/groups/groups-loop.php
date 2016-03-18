@@ -37,9 +37,9 @@
 
 				<?php do_action( 'bp_directory_groups_item' ); ?>
 
+				<div class="action"><?php do_action( 'bp_directory_groups_actions' ); ?></div>
 			</div>
 
-			<div class="action"><?php do_action( 'bp_directory_groups_actions' ); ?></div>
 
 		</li>
 
