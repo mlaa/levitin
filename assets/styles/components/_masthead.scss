@@ -2,24 +2,30 @@
 #main-site-header {
 
   background-color: $nav-primary-background-color;
-  display: flex;
-  line-height: 1em;
+  color: $mla-blue;
+
+  > div {
+    display: flex;
+    align-items: center;
+    min-height: 100px;
+    padding: 0 2em;
+  }
 
   .brand {
     flex: 0;
-    margin: 6px 1em 0; // 6px to center vertically: 1.5 × 4px border on nav tabs
+    line-height: 0;
+    margin-left: 2em;
 
     img {
     }
   }
 
   nav {
+    @include tabs($color: $mla-blue);
     flex: 1;
     font-family: $header-font-family;
-    font-size: $size-m;
-  }
-
-  nav.primary {
-    @include tabs;
+    font-size: $size-vs;
+    text-align: right;
+    margin-right: 2em;
   }
 }

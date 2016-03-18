@@ -13,11 +13,12 @@
     list-style: none;
 
     a {
-      border-top: 4px solid transparent;
-      border-bottom: 4px solid transparent;
+      border-width: 4px 0;
+      border-color: transparent;
+      border-style: solid;
       color: $color;
       display: inline-block;
-      padding: 0.6em 0.4em;
+      padding: 0.5em 1em;
     }
 
   }
@@ -27,38 +28,7 @@
   .current-page-item a,
   .selected a,
   li a:hover {
-    border-bottom: 4px solid $color;
-    text-decoration: none;
-  }
-
-}
-
-@mixin tabs-no-border($color: $black) {
-
-  ul {
-    margin: 0;
-    padding: 0;
-  }
-
-  li {
-
-    display: inline;
-    list-style: none;
-
-    a {
-      color: $color;
-      display: inline-block;
-      padding: 0.6em 0.4em;
-    }
-
-  }
-
-  .current a,
-  .current-menu-item a,
-  .current-page-item a,
-  .selected a,
-  li a:hover {
-    background-color: $page-background-color;
+    border-bottom-color: $color;
     text-decoration: none;
   }
 
