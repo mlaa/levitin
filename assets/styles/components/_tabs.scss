@@ -1,6 +1,11 @@
 // Tabs
 
-@mixin tabs($color: $black) {
+@mixin tabs($color: $mla-blue) {
+
+  background-color: $nav-secondary-background-color;
+  font-family: $header-font-family;
+  font-size: $size-s;
+  text-align: center;
 
   ul {
     margin: 0;

@@ -21,10 +21,8 @@
   }
 
   nav {
-    @include tabs($color: $mla-blue);
+    @include tabs;
     flex: 1;
-    font-family: $header-font-family;
-    font-size: $size-vs;
     text-align: right;
     margin-right: 2em;
   }
