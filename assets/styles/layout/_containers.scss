@@ -1,6 +1,8 @@
 // Layout containers
 
-body > * > * {
+#main-site-header > div,
+body > .wrap,
+footer > div {
   max-width: 1000px;
   margin: 0 auto;
 }
