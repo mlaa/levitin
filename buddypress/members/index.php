@@ -68,40 +68,6 @@ do_action( 'bp_before_directory_members_page' ); ?>
 			</ul>
 		</div><!-- .item-list-tabs -->
 
-		<div class="item-list-tabs" id="subnav" role="navigation">
-			<ul>
-				<?php
-
-				/**
-				 * Fires inside the members directory member sub-types.
-				 *
-				 * @since 1.5.0
-				 */
-				do_action( 'bp_members_directory_member_sub_types' ); ?>
-
-				<li id="members-order-select" class="last filter">
-					<label for="members-order-by"><?php _e( 'Order By:', 'buddypress' ); ?></label>
-					<select id="members-order-by">
-						<option value="active"><?php _e( 'Last Active', 'buddypress' ); ?></option>
-						<option value="newest"><?php _e( 'Newest Registered', 'buddypress' ); ?></option>
-
-						<?php if ( bp_is_active( 'xprofile' ) ) : ?>
-							<option value="alphabetical"><?php _e( 'Alphabetical', 'buddypress' ); ?></option>
-						<?php endif; ?>
-
-						<?php
-
-						/**
-						 * Fires inside the members directory member order options.
-						 *
-						 * @since 1.2.0
-						 */
-						do_action( 'bp_members_directory_order_options' ); ?>
-					</select>
-				</li>
-			</ul>
-		</div>
-
 		<div id="members-dir-list" class="members dir-list">
 			<?php bp_get_template_part( 'members/members-loop' ); ?>
 		</div><!-- #members-dir-list -->
