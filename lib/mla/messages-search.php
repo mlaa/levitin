@@ -36,3 +36,11 @@ function mla_bp_message_search_form() {
 	 */
 	echo apply_filters( 'bp_message_search_form', $search_form_html );
 }
+
+function say_message_instead_of_page( $bp_title ) {
+	if ( bp_is_messages_component() && isset( $bp_title['page'] ) ) {
+		$bp_title['page'] = str_replace( 'Page', 'Message', $bp_title['page'] );
+	}
+	return $bp_title;
+}
+add_filter( 'document_title_parts', 'say_message_instead_of_page' );
