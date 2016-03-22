@@ -69,18 +69,46 @@ footer > div {
 
   #item-header-avatar {
 
-    margin: 2em 3%;
-    width: 20%;
+    margin: 2em 3% 2em 0;
 
     img {
-      height: auto;
-      width: 100%;
     }
 
     #item-buttons {
       text-align: center;
     }
 
+  }
+
+  #item-header-content {
+    flex: 1;
+    display: flex;
+    margin: 2em 0;
+
+    h1 {
+      margin: 0;
+    }
+  }
+
+  #item-meta {
+    flex: 1;
+  }
+
+  #item-admins {
+    text-align: right;
+
+    ul {
+      list-style-type: none;
+
+      li {
+        display: inline-block;
+
+        img {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
   }
 
 }
