@@ -28,6 +28,7 @@ $wp plugin activate --network buddypress-profile-progression
 $wp plugin activate --network bp-block-member
 $wp plugin activate --network buddypress-followers
 $wp plugin activate --network mla-academic-interests
+$wp plugin activate --network bp-blog-avatar
 
 npm install
 gulp
