@@ -82,6 +82,7 @@ function mla_bp_activity_delete_link() {
 		return apply_filters( 'bp_get_activity_delete_link', $link );
 	}
 
+
 /**
  * output an abridged action string (relative to what is stored in the activity table)
  * use like bp_activity_action()
@@ -98,6 +99,8 @@ function levitin_activity_action() {
 
 	// shorten/change some action descriptions
 	switch ( $activity_type ) {
+	case 'new_groupblog_post':
+		$action = str_replace( 'blog post', 'post', $action );
 	case 'updated_profile':
 		$action = "updated profile"; // default action is "<name>'s profile was updated"
 		break;
