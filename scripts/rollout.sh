@@ -35,7 +35,10 @@ gulp
 
 $wp theme activate levitin
 
-$wp widget delete text-13 links-2 rss-5
+for w in text-13 links-2 rss-5
+do
+	$wp widget delete $w || :
+done
 
 # theme must be active for sidebars to have been registered
 # all text widgets for now due to open bug adding rss widgets: https://github.com/wp-cli/wp-cli/issues/1222
