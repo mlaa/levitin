@@ -1,3 +1,5 @@
+<?php bp_directory_groups_search_form(); ?>
+
 <?php do_action( 'bp_before_directory_groups_page' ); ?>
 
 <nav class="secondary" role="navigation">
