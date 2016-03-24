@@ -44,6 +44,18 @@ footer > div {
 
 }
 
+.item-list-tabs {
+  label {
+    margin: 0 1em;
+  }
+}
+
+.item-list-tabs#subnav {
+  ul {
+    padding: .5em 0;
+  }
+}
+
 .item-avatar {
   img {
     @include tile;

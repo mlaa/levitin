@@ -296,3 +296,98 @@ function mla_filter_activities_from_url() {
 	}
 }
 add_action( 'bp_before_activity_loop', 'mla_filter_activities_from_url', 10 );
+
+function mla_group_directory_status_filter() {
+	$str  = '<li class="filter-status"><label for="groups-filter-by">Visibility:</label>';
+	$str .= '<select id="groups-filter-by">';
+	$str .= '<option value="all">All</option>';
+	$str .= '<option value="public">Public</option>';
+	$str .= '<option value="private">Private</option>';
+	if (is_admin() || is_super_admin()) {
+		$str .= '<option value="hidden">Hidden</option>';
+	}
+	$str .= '</select></li>';
+	echo $str;
+}
+function mla_group_directory_type_filter() {
+	$str  = '<li class="filter-type"><label for="groups-filter-by-type">Type:</label>';
+	$str .= '<select id="groups-filter-by-type">';
+	$str .= '<option value="all">All</option>';
+	$str .= '<option value="committees">Committees</option>';
+	$str .= '<option value="forums">Forums</option>';
+	$str .= '<option value="prospective_forums">Prospective Forums</option>';
+	$str .= '<option value="other">Other</option>';
+	$str .= '</select></li>';
+	echo $str;
+}
+add_action( 'bp_groups_directory_group_types', 'mla_group_directory_status_filter');
+add_action( 'bp_groups_directory_group_types', 'mla_group_directory_type_filter');
+
+function old_status_filter_js() {
+	if( wp_script_is( 'jquery', 'done' ) ) { ?>
+	<script type="text/javascript">
+	if (jq.cookie('bp-groups-status')) {
+		jq('li.filter-status select').val(jq.cookie('bp-groups-status'));
+	}
+	jq('li.filter-status select').change( function() {
+
+		if ( jq('.item-list-tabs li.selected').length )
+			var el = jq('.item-list-tabs li.selected');
+		else
+			var el = jq(this);
+
+		var css_id = el.attr('id').split('-');
+		var object = css_id[0];
+		var scope = css_id[1];
+		var status = jq(this).val();
+		var filter = jq('select#groups-order-by').val();
+		var search_terms = '';
+
+		jq.cookie('bp-groups-status',status,{ path: '/' });
+
+		if ( jq('.dir-search input').length )
+			search_terms = jq('.dir-search input').val();
+
+		bp_filter_request( object, filter, scope, 'div.' + object, search_terms, 1, jq.cookie('bp-' + object + '-extras') );
+
+		return false;
+
+	});
+	</script>
+<?php }
+}
+function old_type_filter_js() {
+	if( wp_script_is( 'jquery', 'done' ) ) { ?>
+	<script type="text/javascript">
+	if (jq.cookie('bp-groups-status')) {
+		jq('li.filter-type select').val(jq.cookie('bp-groups-type'));
+	}
+	jq('li.filter-type select').change( function() {
+
+		if ( jq('.item-list-tabs li.selected').length )
+			var el = jq('.item-list-tabs li.selected');
+		else
+			var el = jq(this);
+
+		var css_id = el.attr('id').split('-');
+		var object = css_id[0];
+		var scope = css_id[1];
+		var status = jq(this).val();
+		var filter = jq('select#groups-order-by-type').val();
+		var search_terms = '';
+
+		jq.cookie('bp-groups-type',status,{ path: '/' });
+
+		if ( jq('.dir-search input').length )
+			search_terms = jq('.dir-search input').val();
+
+		bp_filter_request( object, filter, scope, 'div.' + object, search_terms, 1, jq.cookie('bp-' + object + '-extras') );
+
+		return false;
+
+	});
+	</script>
+<?php }
+}
+add_action('wp_footer', 'old_status_filter_js');
+add_action('wp_footer', 'old_type_filter_js');
