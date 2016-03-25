@@ -52,7 +52,7 @@ do_action( 'bp_before_members_loop' ); ?>
 
 		<li <?php bp_member_class(); ?>>
 			<div class="item-avatar">
-				<a href="<?php bp_member_permalink(); ?>"><?php bp_member_avatar( [ 'width' => 150, 'height' => 150 ] ); ?></a>
+				<a href="<?php bp_member_permalink(); ?>"><?php bp_member_avatar( [ 'type' => 'full', 'width' => 150, 'height' => 150 ] ); ?></a>
 			</div>
 
 			<div class="item">
