@@ -1315,6 +1315,9 @@ jq(document).ready( function() {
 		{
 			var parentdiv = thelink.parent();
 
+			location.href = location.href;
+
+			/*
 			// user groups page
 			if ( ! jq('body.directory').length ) {
 				location.href = location.href;
@@ -1351,6 +1354,7 @@ jq(document).ready( function() {
 					}
 				);
 			}
+			*/
 		});
 		return false;
 	} );
