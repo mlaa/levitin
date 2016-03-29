@@ -1,0 +1,27 @@
+#group-create-body {
+  > div {
+    margin: 1em 0;
+
+    input, textarea {
+      min-width: 25%;
+    }
+  }
+
+  label {
+    display: inline-block;
+    min-width: 25%;
+  }
+
+  .radio {
+    label {
+      display: block;
+    }
+  }
+
+  #groupblog-member-options {
+    label {
+      display: block;
+      margin-top: 1em;
+    }
+  }
+}
