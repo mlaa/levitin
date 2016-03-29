@@ -34,6 +34,7 @@ $alert-warning-border-color: #caa;
 }
 
 .notice,
+.bp-template-notice,
 .bbp-template-notice {
   @include alert;
   background-color: $alert-notice-background-color;
