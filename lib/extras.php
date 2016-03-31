@@ -33,6 +33,6 @@ function excerpt_more() {
 add_filter( 'excerpt_more', __NAMESPACE__ . '\\excerpt_more' );
 
 function levitin_add_search_nav_item( $items ) {
-	return $items . '<li class="search"><a href="/site-search">' . __('Search') . '</a></li>';
+	return $items . '<li class="search"><a href="/?s">' . __('Search') . '</a></li>';
 }
 add_filter( 'wp_nav_menu_items', __NAMESPACE__ . '\\levitin_add_search_nav_item', 10, 2 );
