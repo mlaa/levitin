@@ -159,4 +159,6 @@
 		} )();
 	} );
 
+	BBOSS_GLOBAL_SEARCH.enable_ajax_search = false;
+
 } )( jQuery ); // Fully reference jQuery after this point.
