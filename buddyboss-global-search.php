@@ -29,12 +29,12 @@
 				<nav role="navigation" class="primary">
 					<div class="menu-inside-header-navigation-container">
 						<ul id="menu-inside-header-navigation" class="nav">
-							<li id="menu-item-243" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-6 current_page_item menu-item-243"><a href="/groups/">Groups</a></li>
+							<li id="menu-item-243" class="menu-item menu-item-type-post_type menu-item-object-page page_item page-item-6 menu-item-243"><a href="/groups/">Groups</a></li>
 							<li id="menu-item-245" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-245"><a href="/members/">Members</a></li>
 							<li id="menu-item-241" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-241"><a href="/sites/">Sites</a></li>
 							<li id="menu-item-7567" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7567"><a href="/core/">CORE</a></li>
 							<li id="menu-item-1437" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1437"><a href="/publications/">MLA Publications</a></li>
-							<li class="search"><a href="/?s">Search</a></li>
+							<li class="search current-menu-item current_page_item"><a href="/?s">Search</a></li>
 						</ul>
 					</div>
 				</nav>
