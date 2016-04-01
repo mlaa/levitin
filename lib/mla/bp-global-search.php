@@ -13,7 +13,7 @@ function mla_filter_bp_global_search_items( $search_items ) {
 		$search_items = array(
 			'activities',
 			'forums',
-			'posts',
+			//'posts',
 			'members',
 			'groups',
 			'member_field_user_login',
