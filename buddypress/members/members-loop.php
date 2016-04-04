@@ -51,8 +51,11 @@ do_action( 'bp_before_members_loop' ); ?>
 	<?php while ( bp_members() ) : bp_the_member(); ?>
 
 		<li <?php bp_member_class(); ?>>
-			<div class="item-avatar">
-				<a href="<?php bp_member_permalink(); ?>"><?php bp_member_avatar( [ 'type' => 'full', 'width' => 150, 'height' => 150 ] ); ?></a>
+			<div class="item-avatar <?php levitin_member_group_id_classes(); ?>">
+				<a href="<?php bp_member_permalink(); ?>">
+					<?php bp_member_avatar( [ 'type' => 'full', 'width' => 150, 'height' => 150 ] ); ?>
+					<span class="badge"></span>
+				</a>
 			</div>
 
 			<div class="item">

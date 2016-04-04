@@ -57,11 +57,12 @@ footer > div {
 }
 
 .item-avatar {
+  margin-left: 1em;
+
   img {
     @include tile;
     border-radius: 50%;
     display: block;
-    margin-left: 1em;
   }
 }
 
@@ -135,5 +136,20 @@ footer > div {
 
   h1 {
     margin: 0;
+  }
+}
+
+// overlay for member avatars when member belongs to certain groups
+// ...like mla staff, group id 33
+.item-avatar.group-33 {
+  position: relative;
+
+  .badge {
+    background-image: url("../../assets/images/avatar-staff-overlay.png");
+    background-size: contain;
+    width: 152px;
+    height: 153px;
+    position: absolute;
+    top: 0;
   }
 }
