@@ -24,3 +24,8 @@
 .search_results {
   margin: 1em 0;
 }
+
+.bboss_search_page .loading {
+  opacity: .25;
+  cursor: progress;
+}

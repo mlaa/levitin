@@ -159,6 +159,18 @@
 		} )();
 	} );
 
+	// global search customizations
+
 	BBOSS_GLOBAL_SEARCH.enable_ajax_search = false;
+
+	$( document ).on( "click", ".bboss_search_results_wrapper .pagination-links a", function( e ) {
+		e.preventDefault();
+		$( ".bboss_search_page" ).addClass( "loading" );
+	} );
+
+	$( document ).on( "click", ".bboss_search_results_wrapper .item-list-tabs li a", function( e ) {
+		e.preventDefault();
+		$( ".bboss_search_page" ).addClass( "loading" );
+	} );
 
 } )( jQuery ); // Fully reference jQuery after this point.
