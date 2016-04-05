@@ -163,14 +163,52 @@
 
 	BBOSS_GLOBAL_SEARCH.enable_ajax_search = false;
 
-	$( document ).on( "click", ".bboss_search_results_wrapper .pagination-links a", function( e ) {
-		e.preventDefault();
-		$( ".bboss_search_page" ).addClass( "loading" );
-	} );
+	var levitin_ajax_load_handler = function() {
+		if ( $( this ).hasClass( 'loading' ) ) {
+			$( '#buddypress' ).addClass( 'loading' );
+		} else {
+			$( '#buddypress' ).removeClass( 'loading' );
+		}
+	};
 
-	$( document ).on( "click", ".bboss_search_results_wrapper .item-list-tabs li a", function( e ) {
-		e.preventDefault();
-		$( ".bboss_search_page" ).addClass( "loading" );
-	} );
+	$( document ).on( 'cssClassChanged', '.pagination-links a', levitin_ajax_load_handler );
+	$( document ).on( 'cssClassChanged', '#groups-directory-form .item-list-tabs li', levitin_ajax_load_handler );
+	$( document ).on( 'cssClassChanged', '#members-directory-form .item-list-tabs li', levitin_ajax_load_handler );
+	$( document ).on( 'cssClassChanged', '#blogs-directory-form .item-list-tabs li', levitin_ajax_load_handler );
+	$( document ).on( 'cssClassChanged', '.bboss_search_page .item-list-tabs li a', levitin_ajax_load_handler );
 
 } )( jQuery ); // Fully reference jQuery after this point.
+
+
+// override $.fn.addClass to fire an event, so we can listen to it and make our own ajax loading indicators
+// http://stackoverflow.com/a/14084869/700113
+// Create a closure
+(function(){
+	// Your base, I'm in it!
+	var originalAddClassMethod = jQuery.fn.addClass;
+
+	jQuery.fn.addClass = function(){
+		// Execute the original method.
+		var result = originalAddClassMethod.apply( this, arguments );
+
+		// trigger a custom event
+		jQuery(this).trigger('cssClassChanged');
+
+		// return the original result
+		return result;
+	};
+
+	// same for removeClass
+	var originalRemoveClassMethod = jQuery.fn.removeClass;
+
+	jQuery.fn.removeClass = function(){
+		// Execute the original method.
+		var result = originalRemoveClassMethod.apply( this, arguments );
+
+		// trigger a custom event
+		jQuery(this).trigger('cssClassChanged');
+
+		// return the original result
+		return result;
+	};
+})();

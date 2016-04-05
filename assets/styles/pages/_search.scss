@@ -25,7 +25,11 @@
   margin: 1em 0;
 }
 
-.bboss_search_page .loading {
+#buddypress.loading {
   opacity: .25;
   cursor: progress;
+
+  a {
+    cursor: progress;
+  }
 }
