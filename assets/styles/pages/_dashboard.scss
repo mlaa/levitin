@@ -102,16 +102,30 @@
   .dashboard-top,
   .dashboard-right,
   .dashboard-left {
-    li {
-      display: block;
-      padding: 20px;
-      margin: 20px 0;
-      border: 1px solid black;
-      min-height: 200px;
+    li, h2 {
+      border-radius: 15px 15px 0 0;
     }
 
-    h2 {
-      font-size: 1em;
+    li {
+      display: block;
+      margin: 20px 0;
+      box-shadow: 0 1px 2px 0 #ccc;
+      min-height: 200px;
+      background-color: white;
+
+      h2 {
+        font-size: 1.25em;
+        font-weight: normal;
+        background-image: linear-gradient(to bottom, lighten($dashboard-widget-header-background-color, 10%), $dashboard-widget-header-background-color);
+        color: $white;
+        margin: 0;
+        padding: 10px 20px;
+        text-shadow: 0 1px 2px darken($white, 40%);
+      }
+
+      .textwidget {
+        padding: 20px;
+      }
     }
   }
 }
