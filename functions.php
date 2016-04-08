@@ -36,6 +36,7 @@ $cpwpst_includes = [
 	'lib/mla/nonmembers.php',          // Functions for handling nonmembers
 	'lib/mla/portfolios.php',          // Functions to customize CACAP "Portfolios"
 	'lib/mla/remove-unnecessary.php',  // Remove stuff
+	'wp-cli-extend.php',
 ];
 
 foreach ( $cpwpst_includes as $file ) {
